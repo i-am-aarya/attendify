@@ -1,0 +1,11 @@
+.sidebar-selector {
+    display: flex;
+    background-color: transparent;
+
+    border: 1px dotted #ffffff;
+
+}
+
+.sidebar-selector .dropdown-icon {
+    
+}

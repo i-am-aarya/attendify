@@ -1,0 +1,31 @@
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #4682A9;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    padding: 0 80px;
+    /* height: 5vh; */
+    flex: 1;
+}
+
+#navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+#navbar li {
+    list-style: none;
+    padding: 0 5px;
+    position: relative
+}
+
+#navbar li a {
+    text-decoration: none;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #ffffff;
+    transition: 0.2s ease-in-out;
+}
