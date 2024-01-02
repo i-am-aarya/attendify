@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&family=Poppins:wght@300;500&family=Roboto+Slab&display=swap');
+/* Fonts Import */
+
+
+/* interactive button in the sidebar */
+.sidebar-selector {
+    display: flex;
+    background-color: transparent;
+
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 1.2rem;
+    
+    border: 2px solid #ffffff;
+    cursor: pointer;
+    color: #FFFFFF80;
+    transition: 0.3s ease-in-out;
+
+    border-radius: 15px;
+    margin: 3vh 0;
+
+}
+
+.sidebar-selector:hover {
+    color: #FFFFFFFF;
+    box-shadow: 0 0 5px;
+}
+
+.sidebar-selector .dropdown-icon {
+    justify-self: end;
+}
+
+/* list containing sidebar text and icon as items */
+.sidebar-list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* sidebar list item */
+.sidebar-list li {
+    list-style: none;
+    position: relative;
+    padding: 0 10px;
+}
