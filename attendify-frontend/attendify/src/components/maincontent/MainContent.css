@@ -1,3 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&family=Poppins:wght@400;600&family=Roboto+Slab&display=swap');
+
 .main-content {
     flex: 5;
+    display: flex;
+    padding: 20px;
+    width: 100%;
+    flex-direction: column;
+}
+
+.students-text-wrapper {
+    font-family: "Poppins";
+    color: #4682A9;
+    font-weight: 600;
+    font-size: 1.2rem;
+    /* flex: 1; */
+    justify-self: flex-start;
+    align-self: flex-start;
+}
+
+.students-display-area {
+    font-family: "Poppins";
+    color: #00000080;
+    font-weight: 600;
+    flex: 1;
+    /* justify-self: ; */
+    align-self: flex-start;
 }

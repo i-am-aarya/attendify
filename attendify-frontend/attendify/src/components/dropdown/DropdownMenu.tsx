@@ -9,7 +9,6 @@ function DropdownMenu() {
     setIsOpen(!isOpen);
   };
 
-
   const closeMenu = () => {
     setIsOpen(false);
   };

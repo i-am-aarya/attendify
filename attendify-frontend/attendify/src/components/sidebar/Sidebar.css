@@ -1,6 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&family=Poppins:wght@300;500;600&family=Roboto+Slab&display=swap');
+
 .sidebar {
     background-color: #91C8E4;
     flex: 1;
     height: 100vh;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    /* flex-direction: row; */
+
+    font-family: 'Poppins';
+    font-weight: #FFFFFF;
+    color: #FFFFFF;
 }

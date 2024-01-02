@@ -1,10 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&family=Poppins:wght@300;500;600&family=Roboto+Slab&display=swap');
+
 nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
     background: #4682A9;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    padding: 0 80px;
+    padding: 0 50px;
     /* height: 5vh; */
     flex: 1;
 }
@@ -28,4 +30,11 @@ nav {
     font-weight: 600;
     color: #ffffff;
     transition: 0.2s ease-in-out;
+}
+
+.project-title {
+    font-family: 'Poppins';
+    color: #FFFFFF;
+    font-weight: 600;
+    font-size: 2rem;
 }
