@@ -1,0 +1,6 @@
+.expanded-option-panel {
+    color: #FFFFFF80;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
