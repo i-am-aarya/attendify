@@ -3,6 +3,7 @@
 .sidebar {
     background-color: #91C8E4;
     flex: 1;
+    /* height: fit-content; */
     height: 100vh;
     padding: 20px;
     display: flex;
