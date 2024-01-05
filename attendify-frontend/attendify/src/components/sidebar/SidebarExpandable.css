@@ -2,8 +2,14 @@
 /* Fonts Import */
 
 
-/* interactive button in the sidebar */
-.sidebar-selector {
+/* interactive button in the sidebar: expanded and non-expanded states */
+/* *
+  * sidebar-expandable -> non expanded state
+  * sidebar-expandable-expanded -> expanded state
+  */
+
+.sidebar-expandable,
+.sidebar-expandable-expanded {
     display: flex;
     background-color: transparent;
 
@@ -13,20 +19,32 @@
     
     border: 2px solid #ffffff;
     cursor: pointer;
-    color: #FFFFFF80;
-    transition: 0.3s ease-in-out;
+
+    transition: all 0.3s ease-in-out;
 
     border-radius: 15px;
     margin: 3vh 0;
 
+    box-shadow: 0 5px 10px rgb(103, 103, 103);
+
 }
 
-.sidebar-selector:hover {
+.sidebar-expandable-expanded {
     color: #FFFFFFFF;
-    box-shadow: 0 0 5px;
+    box-shadow: 0 0 0;
 }
 
-.sidebar-selector .dropdown-icon {
+.sidebar-expandable {
+    color: #FFFFFF80;
+}
+
+.sidebar-expandable:hover {
+    box-shadow: 0 0 5px;
+    color: #FFFFFFFF;
+
+}
+
+.sidebar-expandable .dropdown-icon {
     justify-self: end;
 }
 
@@ -42,4 +60,12 @@
     list-style: none;
     position: relative;
     padding: 0 10px;
+}
+
+/* contents(div) of the expandable */
+.expandable-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
