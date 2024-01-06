@@ -9,19 +9,24 @@
 }
 
 .students-text-wrapper {
+    padding-top: 25px;
+    margin-left: 60px;
     font-family: "Poppins";
     color: #4682A9;
     font-weight: 600;
-    font-size: 1.2rem;
+    font-size: 1.8rem;
     /* flex: 1; */
     justify-self: flex-start;
     align-self: flex-start;
 }
 
 .students-display-area {
+    margin-left: 60px;
+    padding-top: 40px;
     font-family: "Poppins";
-    color: #00000080;
-    font-weight: 600;
+    font-size: 1.6rem;
+    color: gray;
+    font-weight: 400;
     flex: 1;
     /* justify-self: ; */
     align-self: flex-start;

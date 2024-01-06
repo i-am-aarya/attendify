@@ -5,7 +5,7 @@
     flex: 1;
     /* height: fit-content; */
     height: 100vh;
-    padding: 20px;
+    padding: 50px;
     display: flex;
     flex-direction: column;
     /* flex-direction: row; */
@@ -14,3 +14,7 @@
     font-weight: #FFFFFF;
     color: #FFFFFF;
 }
+
+ h1{
+    margin-top: -10px;
+ }
