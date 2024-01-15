@@ -1,87 +1,133 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
-/* whole page */
-.login-page {
-    display: flex;
-    height: 100vh;
-    width: 100vw;
+body, html {
+    height: 100%;
+    margin: 0;
     background-color: #91C8E4;
-}
-
-/* container on the left side */
-.left-container {
-    flex: 1;
-    background-image: url("./background-image.png");
+  }
+  
+  .container {
     display: flex;
-    justify-content: center;
-    align-items: center;
-
-    background-size: cover;
-}
-
-/* .left-container */
-.text-container {
-    color: white;
-    font-family: "Poppins";
-    line-height: normal;
-    z-index: 12;
-}
-
-/* title text on the left-container */
-.title-wrapper {
-    font-size: 5rem;
+    height: 100%;
+  }
+  
+  /* Left Container & Contents of it */
+  .left-container {
+    background-image: url(https://images.unsplash.com/photo-1544535830-9df3f56fff6a?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+    width: 120vh;
+    height: 100vh;
+    background-size: cover; 
+    background-position: center;
+  }
+  
+  .title-container {
+    font-size: 9rem;
+    color: #ffffff;
+    font-family: "Helvetica";
     font-weight: 700;
-}
-/* descrition, below title text */
-.description-wrapper {
-    font-size: 2rem;
-    padding-bottom: 30vh;
+    display: flex;
+    margin-top: 300px;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .description-container {
+    font-size: 1rem;
+    color: #ffffff;
+    font-family: "Helvetica";
     font-weight: 700;
-}
-
-/* container on the right */
-.right-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -15px;
+  }
+  
+  
+  /* Right Container & Contents of it */
+  .right-container {
     flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* container containing the overlapping rectangles */
-.overlapping-rectangles-container {
-
-    /* background-color: brown; */
-    /* border: 10px solid brown; */
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-}
-
-/* overlapping rectangles */
-.rectangle-top,
-.rectangle-bottom {
-    width: 25vw;
-    height: 70vh;
-    border-radius: 15px;
-}
-
-/* top rectangle */
-.rectangle-top {
-    position: relative;
-    background-color: #fff;
-    /* left: 10%; */
-    z-index: 2;
-}
-
-/* bottom-rectangle */
-.rectangle-bottom {
+  }
+  
+  .top-rectangle,
+  .bottom-rectangle {
+    width: 30vw;
+    height: 67vh;
     position: absolute;
-    background-color: #4682A9;
-    top: 10vh;
+    margin-left: 230px;
+  }
+  
+  .top-rectangle {
+    z-index: 2;
+    background-color: #ffffff;
+    width: 52vh;
+    border-radius: 15px;
+    left: 55%;
+    top: 15%;
+    display: flex;
+  
+  }
+  
+  .bottom-rectangle {
     z-index: 1;
-
-    left: 10%;
-    top: 10%;
-}
+    background-color: #4682a9;
+    width: 52vh;
+    border-radius: 15px;
+    left: 58%;
+    top: 21%;
+  }
+  
+  .login-heading-wrapper {
+    color: #4682a9;
+    font-size: 2.5rem;
+    font-family: "Helvetica";
+    font-weight: 600;
+    margin-left: 50px;
+  }
+  
+  .username-wrapper,
+  .password-wrapper {
+    color: #808080b3;
+    font-size: 1.3rem;
+    font-weight: 500;
+    padding-top: 0vh;
+    margin-left: 50px;
+  }
+  
+  .username-input-box,
+  .password-input-box {
+  
+    border: 0;
+    background-color: transparent;
+    width: 40vh;
+    font-size: 1.2rem;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    margin-bottom: 3vh;
+    border-bottom: 1px solid #cccccc;
+    color: #4682a9;
+  
+  }
+  
+  
+  .username-input-box:focus,
+  .password-input-box:focus {
+    outline: 0;
+  }
+  
+  .login-button {
+    color: #ffffff;
+    font-size: 1.8rem;
+    font-weight: 700;
+    background-color: #4682a9;
+    margin-left: 50px;
+    border-radius: 15px;
+    height: 8vh;
+    width: 40vh;
+    font-family: "Helvetica";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .login-button:hover {
+    background-color: #91C8E4;
+  }
