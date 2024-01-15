@@ -3,35 +3,51 @@ import "./LoginComponent.css";
 import "crypto-js";
 import CryptoJS from "crypto-js";
 import Base64 from "crypto-js/enc-base64";
+import { useNavigate } from "react-router-dom";
 
 const LoginComponent = () => {
-  const [username, setUsername] = useState("");
+  const navigate = useNavigate()
+  const [userEmail, setUserEmail] = useState("");
   const [userpassword, setUserPassword] = useState("");
   const [isFormFilled, setIsFormFilled] = useState(false);
   const [areCredentialsCorrect, setAreCredentialsCorrect] = useState(false);
 
   function checkIfFormFilled() {
-    setIsFormFilled(username && userpassword ? true : false);
+    setIsFormFilled(userEmail && userpassword ? true : false);
   }
 
-  function handleSubmit(event: any) {
+  const handleSubmit = async (event: any) => {
       event.preventDefault();
 
-      const response = fetch("http://localhost:8080/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username: username,
-          password: Base64.stringify(CryptoJS.SHA512(userpassword)),
-        }),
-        credentials: "include",
-      }).catch((error) => {
-        console.error(error);
-      });
+      console.log(JSON.stringify({
+        emailID: userEmail,
+        password: Base64.stringify(CryptoJS.SHA512(userpassword)),
+      }))
 
-      // check response and update page accordingly
+      try {
+        const response = await fetch("http://localhost:8080/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            emailID: userEmail,
+            password: Base64.stringify(CryptoJS.SHA512(userpassword)),
+          }),
+        })
+
+        const data = await response.json()
+
+        console.log(data)
+
+        if (data.login) {
+          navigate("/dashboard")
+        }
+
+      } catch (error) {
+        console.error("Error during login: ", error)
+      }
+
   }
 
   return (
@@ -40,17 +56,17 @@ const LoginComponent = () => {
 
       <form onSubmit={handleSubmit}>
         <div className="credentials-input-container">
-          <label htmlFor="userName" className="input-label">
-            Username
+          <label htmlFor="userEmail" className="input-label">
+            userEmail
           </label>
           <input
-            id="userName"
+            id="userEmail"
             type="text"
-            className="username-input-box"
-            placeholder="Enter Username"
-            value={username}
+            className="email-input-box"
+            placeholder="Enter userEmail"
+            value={userEmail}
             onChange={(e) => {
-              setUsername(e.target.value);
+              setUserEmail(e.target.value);
               checkIfFormFilled();
             }}
           />
@@ -78,7 +94,7 @@ const LoginComponent = () => {
         <button
           type="submit"
           className={
-            username && userpassword ? "login-button" : "login-button-disabled"
+            userEmail && userpassword ? "login-button" : "login-button-disabled"
           }
           disabled={!isFormFilled}
         >

@@ -4,7 +4,7 @@ project.md
 
 
 # React
-/node_modules/
+/node_modules
 
 # Backend - temporarily
 /attendify-backend/
@@ -12,3 +12,6 @@ project.md
 # Database - temporarily
 /attendify-database
 
+project-structure.md
+
+TODO.md
