@@ -1,146 +1,141 @@
 body, html {
-    height: 100%;
-    margin: 0;
-    background-color: #91C8E4;
-  }
-  
-  .container {
-    display: flex;
-    height: 100%;
-  }
-  
-  /* Left Container & Contents of it */
-  .left-container {
-    background-image: url(https://images.unsplash.com/photo-1544535830-9df3f56fff6a?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
-    width: 120vh;
-    height: 100vh;
-    background-size: cover; 
-    background-position: center;
-  }
-  
-  .title-container {
-    font-size: 9rem;
-    color: #ffffff;
-    font-family: "Helvetica";
-    font-weight: 700;
-    display: flex;
-    margin-top: 300px;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .description-container {
-    font-size: 1rem;
-    color: #ffffff;
-    font-family: "Helvetica";
-    font-weight: 700;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: -15px;
-  }
-  
-  
-  /* Right Container & Contents of it */
-  .right-container {
-    flex: 1;
-  }
-  
-  .top-rectangle,
-  .bottom-rectangle {
-    width: 30vw;
-    height: 67vh;
-    position: absolute;
-    margin-left: 230px;
-  }
-  
-  .top-rectangle {
-    z-index: 2;
-    background-color: #ffffff;
-    width: 52vh;
-    border-radius: 15px;
-    left: 55%;
-    top: 15%;
-    display: flex;
-  
-  }
-  
-  .bottom-rectangle {
-    z-index: 1;
-    background-color: #4682a9;
-    width: 52vh;
-    border-radius: 15px;
-    left: 58%;
-    top: 21%;
-  }
-  
-  .login-heading-wrapper {
-    color: #4682a9;
-    font-size: 2.5rem;
-    font-family: "Helvetica";
-    font-weight: 600;
-    margin-left: 50px;
-  }
-  
-  .username-wrapper,
-  .password-wrapper {
-    color: #808080b3;
-    font-size: 1.3rem;
-    font-weight: 500;
-    padding-top: 0vh;
-    margin-left: 50px;
-  }
-  
-  .username-input-box,
-  .password-input-box {
-  
-    border: 0;
-    background-color: transparent;
-    width: 40vh;
-    font-size: 1.2rem;
-    padding-top: 2vh;
-    padding-bottom: 2vh;
-    margin-bottom: 3vh;
-    border-bottom: 1px solid #cccccc;
-    color: #4682a9;
-  
-  }
-  
-  
-  .username-input-box:focus,
-  .password-input-box:focus {
-    outline: 0;
-  }
-  
-  .login-button {
-    margin-top: 11vh;
-    color: #ffffff;
-    font-size: 1.8rem;
-    font-weight: 700;
-    background-color: #4682a9;
-    margin-left: 50px;
-    border-radius: 15px;
-    height: 8vh;
-    width: 40vh;
-    font-family: "Helvetica";
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-  }
-  
-  .login-button:hover {
-    background-color: #91C8E4;
-  }
+  height: 100%;
+  margin: 0;
+  background-color: #91C8E4;
+}
 
-  .error-message {
-    margin-top: -10px;
-    color: red;
-    font-size:18px;
-  }
+.container {
+  display: flex;
+  height: 100%;
+}
 
-  .toggle-password{
-    margin-top: -69px;
-    padding-left: 36vh;
-    cursor: pointer;
-  }
+/* Left Container & Contents of it */
+.left-container {
+  background-image: url(https://images.unsplash.com/photo-1544535830-9df3f56fff6a?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+  width: 50%; /* Adjusted to 50% for responsiveness */
+  height: 100vh;
+  background-size: cover; 
+  background-position: center;
+}
+
+.title-container {
+  font-size: 6vw; /* Using vw units for responsive font size */
+  color: #ffffff;
+  font-family: "Helvetica";
+  font-weight: 700;
+  display: flex;
+  margin-top: 35vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.description-container {
+  font-size: 1.2vw; /* Using vw units for responsive font size */
+  color: #ffffff;
+  font-family: "Helvetica";
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -1vh;
+}
+
+/* Right Container & Contents of it */
+.right-container {
+  flex: 1;
+}
+
+.top-rectangle,
+.bottom-rectangle {
+  width: 30vw; /* Using vw units for responsive width */
+  height: 70vh;
+  position: absolute;
+  margin-left: 5vw; /* Using vw units for responsive margin */
+}
+
+.top-rectangle {
+  z-index: 2;
+  background-color: #ffffff;
+  width: 30vw; /* Adjusted for responsiveness */
+  border-radius: 15px;
+  left: 55%;
+  top: 15%;
+  display: flex;
+}
+
+.bottom-rectangle {
+  z-index: 1;
+  background-color: #4682a9;
+  width: 30vw; /* Adjusted for responsiveness */
+  border-radius: 15px;
+  left: 58%;
+  top: 21%;
+}
+
+.login-heading-wrapper {
+  color: #4682a9;
+  font-size: 2.5vw; /* Using vw units for responsive font size */
+  font-family: "Helvetica";
+  font-weight: 600;
+  margin-left: 3vw; /* Using vw units for responsive margin */
+}
+
+.username-wrapper,
+.password-wrapper {
+  color: #808080b3;
+  font-size: 1.3vw; /* Using vw units for responsive font size */
+  font-weight: 500;
+  padding-top: 0;
+  margin-left: 3vw; /* Using vw units for responsive margin */
+}
+
+.username-input-box,
+.password-input-box {
+  border: 0;
+  background-color: transparent;
+  width: 23vw; /* Using vw units for responsive width */
+  font-size: 1.2vw; /* Using vw units for responsive font size */
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  margin-bottom: 3vh;
+  border-bottom: 1px solid #cccccc;
+  color: #4682a9;
+}
+
+.username-input-box:focus,
+.password-input-box:focus {
+  outline: 0;
+}
+
+.login-button {
+  margin-top: 8vh; /* Adjusted for responsiveness */
+  color: #ffffff;
+  font-size: 1.8vw; /* Using vw units for responsive font size */
+  font-weight: 700;
+  background-color: #4682a9;
+  margin-left: 3vw; /* Using vw units for responsive margin */
+  border-radius: 15px;
+  height: 8vh;
+  width: 23vw; /* Using vw units for responsive width */
+  font-family: "Helvetica";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.login-button:hover {
+  background-color: #91C8E4;
+}
+
+.error-message {
+  margin-top: -1vh;
+  color: red;
+  font-size: 1.1vw; /* Using vw units for responsive font size */
+}
+
+.toggle-password {
+  margin-top: -8vh; /* Adjusted for responsiveness */
+  padding-left: 21vw; /* Using vw units for responsive padding */
+  cursor: pointer;
+}
