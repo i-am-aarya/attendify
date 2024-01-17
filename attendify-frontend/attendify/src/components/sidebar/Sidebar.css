@@ -8,6 +8,7 @@
     padding: 50px;
     display: flex;
     flex-direction: column;
+    max-width: 18vw;
     /* flex-direction: row; */
 
     font-family: 'Poppins';
