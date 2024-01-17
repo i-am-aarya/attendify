@@ -12,6 +12,7 @@
 .sidebar-expandable-expanded {
     width: 15vw;
     display: flex;
+    flex-direction: column;
     background-color: transparent;
 
     font-family: 'Poppins', sans-serif;
@@ -50,24 +51,14 @@
     justify-self: center;
 }
 
-/* list containing sidebar text and icon as items */
-.sidebar-list {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.shift-text-wrapper {
+    padding: 10px;
 }
 
-/* sidebar list item */
-.sidebar-list li {
+.shift-text-wrapper ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     list-style: none;
-    position: relative;
-    padding: 0 10px;
-}
-
-/* contents(div) of the expandable */
-.expandable-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    position: relative
 }

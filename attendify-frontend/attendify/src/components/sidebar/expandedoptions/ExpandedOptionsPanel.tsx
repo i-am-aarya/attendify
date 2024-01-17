@@ -1,19 +1,19 @@
 import React from "react";
-import ExpandedOption from "./ExpandableOption";
 import "./ExpandedOptionsPanel.css"
+import DepartmentOption from "./DepartmentOption";
 
-const ExpandedOptionPanel = () => {
+const DepartmentOptionPanel = () => {
     return (
         <>
         <div className="expanded-option-panel">
-            <ExpandedOption semester="Software"/>
-            <ExpandedOption semester="IT"/>
-            <ExpandedOption semester="Computer"/>
-            <ExpandedOption semester="Electrical"/>
-            <ExpandedOption semester="Civil"/>
+            <DepartmentOption semester="Software"/>
+            <DepartmentOption semester="IT"/>
+            <DepartmentOption semester="Computer"/>
+            <DepartmentOption semester="Electrical"/>
+            <DepartmentOption semester="Civil"/>
         </div>
         </>
     );
 };
 
-export default ExpandedOptionPanel
+export default DepartmentOptionPanel

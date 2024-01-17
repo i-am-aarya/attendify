@@ -1,8 +1,8 @@
 import React from "react";
 
 /**
- * ExpandedOption is the individual option, collection of which
- * appears in the ExpandedOptionsPanel, which appears in
+ * DepartmentOption is the individual option, collection of which
+ * appears in the DepartmentOptionsPanel, which appears in
  * app sidebar
  */
 
@@ -10,7 +10,7 @@ function doSth() {
     console.log("Print")
 }
 
-const ExpandedOption = ({semester}: {semester: string}) => {
+const DepartmentOption = ({semester}: {semester: string}) => {
     return (
         <>
         <div className="expanded-option" onClick={doSth}>
@@ -20,4 +20,4 @@ const ExpandedOption = ({semester}: {semester: string}) => {
     );
 };
 
-export default ExpandedOption;
+export default DepartmentOption;

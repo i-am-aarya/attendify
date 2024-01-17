@@ -4,8 +4,6 @@ import SidebarExpandable from "./SidebarExpandable";
 
 const Sidebar = () => {
 
-    let text = "Hello"
-
     return (
         <>
 
