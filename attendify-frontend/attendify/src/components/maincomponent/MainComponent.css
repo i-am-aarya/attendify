@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&family=Poppins:wght@400;600&family=Roboto+Slab&display=swap');
+
+.main-content {
+    flex: 5;
+    display: flex;
+    padding: 20px;
+    width: 100%;
+    flex-direction: column;
+}
+
+.students-text-wrapper {
+    padding-top: 25px;
+    margin-left: 60px;
+    font-family: "Poppins";
+    color: #4682A9;
+    font-weight: 600;
+    font-size: 1.8rem;
+    /* flex: 1; */
+    justify-self: flex-start;
+    align-self: flex-start;
+}
+
+.students-display-area {
+    margin-left: 60px;
+    padding-top: 40px;
+    align-self: flex-start;
+}
+
+.students-box{
+    background-color: #749BC2;
+    padding: 10px;
+    width: 67vw;
+    height: 15vh;
+    border-radius: 20px;
+    margin-top: 10px; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.students-box:hover{
+    background-color: #91C8E4;
+    cursor: pointer;
+    transition: ease-in-out 200ms;
+}
+
+.students-details{
+    font-family: "Poppins";
+    color: #FFFFFF;
+    font-weight: 600;
+    font-size: 1.6rem;
+    justify-self: flex-start;
+    align-self: flex-start;
+    margin-top: 2vh;
+    margin-left: 5vh;
+    position: absolute;
+}
+
+.student-name {
+    margin-right: 5px;
+}
+
+.vertical-line {
+    height: 100%;
+    border-left: 2px solid #FFFFFF;
+    margin: 0 80px; 
+}
+
+.symbol-text {
+    margin-right: 5px; 
+    color: #D3D3D3;
+}
+
+.symbol-no {
+    font-weight: 600;
+    font-size: 1.6rem;
+}
+
+.students-box input[type="checkbox"] {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    left: 125vh;
+    top: 50%; 
+    transform: translateY(-50%);
+  }

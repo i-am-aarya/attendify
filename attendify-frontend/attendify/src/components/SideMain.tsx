@@ -1,6 +1,7 @@
 import React from "react";
 import Sidebar from "./sidebar/Sidebar";
-import MainContent from "./maincontent/MainContent";
+import MainComponent from "./maincomponent/MainComponent";
+
 
 import "./SideMain.css"
 
@@ -11,7 +12,7 @@ const SideMain = () => {
       <>
         <div className="sidemain">
           <Sidebar/>
-          <MainContent/>
+          <MainComponent/>
         </div>
       </>
     );
