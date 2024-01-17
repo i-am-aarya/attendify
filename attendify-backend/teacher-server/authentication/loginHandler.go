@@ -5,6 +5,9 @@ currently, session is used, will try jwt later
 package authentication
 
 import (
+	"attendify/teacher-server/database"
+	"crypto/sha512"
+	"encoding/hex"
 	"encoding/json"
 	"fmt"
 	"net/http"
@@ -39,10 +42,20 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// printing out the credentials for debugging purposes
-	fmt.Println(credential)
+	hasher := sha512.New()
+	hasher.Write([]byte(credential.Password))
+	hashBytes := hasher.Sum(nil)
 
-	if credential.EmailID == "asd@ncit.edu.np" && credential.Password == "one@123" {
+	hashedPassword := hex.EncodeToString(hashBytes)
+
+	// if credential.EmailID == "asd@ncit.edu.np" && credential.Password == "one@123" {
+	match, err := database.MatchEmailAndPassword(credential.EmailID, hashedPassword)
+
+	if err != nil {
+		http.Error(w, "database error", http.StatusInternalServerError)
+	}
+
+	if match {
 		setSession(credential.EmailID, w, r)
 		w.WriteHeader(http.StatusOK)
 		// w.Write([]byte("authentication successful"))
