@@ -48,7 +48,6 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 
 	hashedPassword := hex.EncodeToString(hashBytes)
 
-	// if credential.EmailID == "asd@ncit.edu.np" && credential.Password == "one@123" {
 	match, err := database.MatchEmailAndPassword(credential.EmailID, hashedPassword)
 
 	if err != nil {
