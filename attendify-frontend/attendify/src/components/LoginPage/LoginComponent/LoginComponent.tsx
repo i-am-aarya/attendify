@@ -1,8 +1,5 @@
 import React, { useState } from "react";
 import "./LoginComponent.css";
-import "crypto-js";
-import CryptoJS from "crypto-js";
-import Base64 from "crypto-js/enc-base64";
 import { useNavigate } from "react-router-dom";
 
 const LoginComponent = () => {
@@ -19,30 +16,27 @@ const LoginComponent = () => {
   const handleSubmit = async (event: any) => {
       event.preventDefault();
 
-      console.log(JSON.stringify({
-        emailID: userEmail,
-        password: Base64.stringify(CryptoJS.SHA512(userpassword)),
-      }))
-
       try {
-        const response = await fetch("http://localhost:8080/login", {
+        const response = await fetch(
+          "http://localhost:8080/login",
+          {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
+          credentials: 'include',
           body: JSON.stringify({
             emailID: userEmail,
-            password: Base64.stringify(CryptoJS.SHA512(userpassword)),
+            password: userpassword,
           }),
         })
 
-        const data = await response.json()
+        console.log(response)
 
-        console.log(data)
+        const responseData = await response.json()
 
-        if (data.login) {
-          navigate("/dashboard")
-        }
+        console.log(responseData)
+
 
       } catch (error) {
         console.error("Error during login: ", error)
