@@ -56,6 +56,7 @@ func ConnectToDatabase() {
 
 	if err != nil {
 		log.Fatal(err)
+		fmt.Println("Database connection unsuccessful")
 	}
 
 	attendifyDatabase = client.Database("attendifyDatabase")
