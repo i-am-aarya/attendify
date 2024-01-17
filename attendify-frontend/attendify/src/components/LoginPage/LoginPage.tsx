@@ -6,16 +6,18 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
   const handleEmailChange = (event: ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
-    setError('');
+    setEmailError('');
   };
 
   const handlePasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
+    setPasswordError('');
   };
 
   const handleTogglePassword = () => {
@@ -26,11 +28,12 @@ const LoginPage: React.FC = () => {
     // Validate if the email ends with "ncit.edu.np"
     const isGmail = /@ncit.edu\.np$/.test(email);
 
-    if (isGmail) {
-      // Perform login logic
-      console.log('Login successful');
-    } else {
-      setError('Please enter a valid college email');
+    if (!isGmail) {
+      setEmailError('Please enter a valid college email');
+    }
+    if(!password.trim()){
+      setPasswordError('Please enter your password');
+      return;
     }
   };
 
@@ -58,9 +61,8 @@ const LoginPage: React.FC = () => {
                 value={email}
                 onChange={handleEmailChange}
               />
-              {error && <div className="error-message">{error}</div>}
-            </div>
-            <br />
+              {emailError && <div className="email-error">{emailError}</div>}
+            </div><br/>
 
             <div className="password-wrapper">
               <p>Password</p>
@@ -75,6 +77,7 @@ const LoginPage: React.FC = () => {
                   <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
                 </div>
               </div>
+              {passwordError && <div className="password-error">{passwordError}</div>}
             </div>
 
             <div className="login-button" onClick={handleLoginClick}>
