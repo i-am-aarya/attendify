@@ -23,13 +23,15 @@ func main() {
 	// initializa database
 	database.ConnectToDatabase()
 
+	// fmt.Println(os.Getenv("JWT_SECRET_KEY"))
+
 	defer database.DisconnectDatabase()
 
 	port := ":8080"
 	go func() {
 		// time.Sleep(time.Second * 5)
 		// logger.Printf("Server Listening on port %s\n", port)
-		ticker := time.NewTicker(time.Second * 10)
+		ticker := time.NewTicker(time.Second * 60)
 		defer ticker.Stop()
 
 		for {
