@@ -3,24 +3,9 @@ import "./MainContent.css";
 import StudentComponent from "../StudentComponent/StudentComponent";
 import Sidebar from "../sidebar/Sidebar";
 import NavBar from "../navbar/NavBar";
-// import { useNavigate } from "react-router-dom";
-// import { useJwt } from "react-jwt";
-
-// const token = "my JWT"
 
 const MainContent = () => {
-  // const navigate = useNavigate()
-
-  // const {decodedToken, isExpired} = useJwt(token)
-
-  // useEffect(() => {
-
-  //   const cookies = document.cookie
-
-
-
-  // }, [navigate])
-
+  
   return (
     <>
       <div className="main-content">
