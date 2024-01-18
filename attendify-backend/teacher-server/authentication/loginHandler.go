@@ -1,7 +1,3 @@
-/*
-currently, session is used, will try jwt later
-*/
-
 package authentication
 
 import (
@@ -9,75 +5,89 @@ import (
 	"crypto/sha512"
 	"encoding/hex"
 	"encoding/json"
-	"fmt"
+	"log"
 	"net/http"
+	"time"
 
-	"github.com/gorilla/sessions"
+	"github.com/golang-jwt/jwt/v4"
 )
 
-type Credential struct {
+var secretKey = "SuperSecretKeyNoOneShouldKnow"
+
+type Teacher struct {
 	EmailID  string `json:"emailID"`
 	Password string `json:"password"`
 }
 
-// helloWorld is the secret key. can and should be changed
-var store = sessions.NewCookieStore([]byte("helloWorld"))
+type Claims struct {
+	jwt.RegisteredClaims
+	EmailID string `json:"emailID"`
+}
 
-func LoginHandler(w http.ResponseWriter, r *http.Request) {
+func generateJWT(emailID string) (string, error) {
 
-	fmt.Println("Login Requested")
+	expirationTime := time.Now().Add(time.Hour * 1)
 
-	w.Header().Set("Content-Type", "application/json")
-
-	if r.Method != http.MethodPost {
-		http.Error(w, "invalid request method", http.StatusMethodNotAllowed)
-		return
+	claims := Claims{
+		RegisteredClaims: jwt.RegisteredClaims{
+			ExpiresAt: jwt.NewNumericDate(expirationTime),
+		},
+		EmailID: emailID,
 	}
 
-	var credential Credential
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 
-	err := json.NewDecoder(r.Body).Decode(&credential)
-	if err != nil {
-		http.Error(w, "Invalid request", http.StatusBadRequest)
-		return
-	}
+	signedToken, err := token.SignedString([]byte(secretKey))
 
-	hasher := sha512.New()
-	hasher.Write([]byte(credential.Password))
-	hashBytes := hasher.Sum(nil)
+	// if err != nil {
+	// 	http.Error(w, "error generating token", http.StatusInternalServerError)
+	// 	return
+	// }
 
-	hashedPassword := hex.EncodeToString(hashBytes)
-
-	match, err := database.MatchEmailAndPassword(credential.EmailID, hashedPassword)
-
-	if err != nil {
-		http.Error(w, "database error", http.StatusInternalServerError)
-	}
-
-	if match {
-		setSession(credential.EmailID, w, r)
-		w.WriteHeader(http.StatusOK)
-		// w.Write([]byte("authentication successful"))
-
-		fmt.Println("Credentials match, logging in")
-
-		json.NewEncoder(w).Encode(map[string]string{"message": "authentication successful"})
-
-	} else {
-		w.WriteHeader(http.StatusUnauthorized)
-		json.NewEncoder(w).Encode(map[string]string{"message": "invalid login credentials"})
-		// http.Error(w, "Invalid username or password", http.StatusUnauthorized)
-	}
+	return signedToken, err
 
 }
 
-func setSession(emailID string, w http.ResponseWriter, r *http.Request) {
-	// session, _ := sessions.Store.Get(r, "teacher-attendify-session")
-	session, _ := store.Get(r, "user-session")
-	session.Values["emailID"] = emailID
-	session.Options.SameSite = http.SameSiteNoneMode
-	session.Options.MaxAge = 60 * 60
-	session.Options.Secure = true
-	session.Options.HttpOnly = true
-	session.Save(r, w)
+func hashSha512(stringToHash string) string {
+	hasher := sha512.New()
+	hasher.Write([]byte(stringToHash))
+	hashBytes := hasher.Sum(nil)
+	hashedPassword := hex.EncodeToString(hashBytes)
+	return hashedPassword
+}
+
+func LoginHandler(w http.ResponseWriter, r *http.Request) {
+	var teacher Teacher
+
+	err := json.NewDecoder(r.Body).Decode(&teacher)
+
+	if err != nil {
+		http.Error(w, "Invalid request body", http.StatusBadRequest)
+		return
+	}
+
+	hashedPassword := hashSha512(teacher.Password)
+	match, err := database.MatchEmailAndPassword(teacher.EmailID, hashedPassword)
+
+	if err != nil {
+		http.Error(w, "internal server error", http.StatusInternalServerError)
+		log.Println("Error matching email and password: ", err)
+		return
+	}
+
+	if match {
+		// unsignedToken, err := generateJWT(teacher.EmailID)
+		signedToken, err := generateJWT(teacher.EmailID)
+
+		if err != nil {
+			http.Error(w, "token generation error", http.StatusInternalServerError)
+			return
+		}
+
+		w.Header().Set("Content-Type", "application/json")
+		json.NewEncoder(w).Encode(map[string]string{"token": signedToken})
+	} else {
+		http.Error(w, "Invalid email or password", http.StatusUnauthorized)
+	}
+
 }

@@ -1,8 +1,10 @@
 package main
 
 import (
-	"attendify/teacher-server/authentication"
+	"attendify/teacher-server/database"
+	"attendify/teacher-server/routes"
 	"fmt"
+	"log"
 	"net/http"
 	"time"
 
@@ -13,20 +15,24 @@ import (
 func main() {
 	router := mux.NewRouter()
 
-	router.HandleFunc("/login", authentication.LoginHandler).Methods("POST")
+	database.ConnectToDatabase()
+	fmt.Println("Connected to database")
 
-	// allow
+	routes.SetupRoutes(router)
+
+	// setting cors
 	corsHandler := handlers.CORS(
 		handlers.AllowedHeaders([]string{"*"}),
-		handlers.AllowedMethods([]string{"GET", "POST", "PUT", "DELETE", "OPTIONS"}),
-		handlers.AllowedOrigins([]string{"http://localhost:3000"}),
+		// handlers.AllowedMethods([]string{"GET", "POST", "PUT", "DELETE", "OPTIONS"}),
+		handlers.AllowedMethods([]string{"*"}),
+		handlers.AllowedOrigins([]string{"*"}),
 	)
 
 	port := ":8080"
 
 	go func() {
 		for {
-			fmt.Printf("Server listening on %s\n", port)
+			log.Printf("Server listening on %s\n", port)
 			time.Sleep(time.Minute)
 		}
 	}()

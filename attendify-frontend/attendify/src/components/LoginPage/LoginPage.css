@@ -124,6 +124,8 @@ body, html {
   cursor: pointer;
   position: absolute; /* Position the button absolutely within the right container */
   bottom: 4vh; /* Adjusted for responsiveness */
+
+  border: 0;
 }
 
 .login-button:hover {
