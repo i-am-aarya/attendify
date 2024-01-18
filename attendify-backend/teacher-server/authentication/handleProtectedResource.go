@@ -1,6 +1,7 @@
 package authentication
 
 import (
+	"attendify/teacher-server/database"
 	"encoding/json"
 	"net/http"
 	"strings"
@@ -48,17 +49,11 @@ func HandleProtectedResource(w http.ResponseWriter, r *http.Request) {
 	if authorized {
 		claims := tokenString.Claims.(jwt.MapClaims)
 
-		emailID := claims["emailID"].(string)
+		teacher, err := database.GetTeacherByEmailID(claims["emailID"].(string))
 
-		if emailID != "one@ncit.edu.np" {
-			http.Error(w, "error fetching user data", http.StatusInternalServerError)
+		if err != nil {
+			http.Error(w, "Error fetching teacher data", http.StatusInternalServerError)
 			return
-		}
-
-		// var teacher Teacher
-		teacher := Teacher{
-			EmailID:  "one@ncit.edu.np",
-			Password: "one@123",
 		}
 
 		w.Header().Set("Content-Type", "application/json")

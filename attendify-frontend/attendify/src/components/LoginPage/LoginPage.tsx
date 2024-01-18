@@ -48,9 +48,6 @@ const LoginPage: React.FC = () => {
       })
 
       localStorage.setItem('token', response.data.token)
-      const decodedToken = jwtDecode(response.data.token)
-
-      console.log(decodedToken)
 
       navigate('/dashboard')
 

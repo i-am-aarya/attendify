@@ -2,6 +2,7 @@ package authentication
 
 import (
 	"attendify/teacher-server/database"
+	"attendify/teacher-server/models"
 	"crypto/sha512"
 	"encoding/hex"
 	"encoding/json"
@@ -14,21 +15,11 @@ import (
 
 var secretKey = "SuperSecretKeyNoOneShouldKnow"
 
-type Teacher struct {
-	EmailID  string `json:"emailID"`
-	Password string `json:"password"`
-}
-
-type Claims struct {
-	jwt.RegisteredClaims
-	EmailID string `json:"emailID"`
-}
-
 func generateJWT(emailID string) (string, error) {
 
 	expirationTime := time.Now().Add(time.Hour * 1)
 
-	claims := Claims{
+	claims := models.Claims{
 		RegisteredClaims: jwt.RegisteredClaims{
 			ExpiresAt: jwt.NewNumericDate(expirationTime),
 		},
@@ -57,7 +48,7 @@ func hashSha512(stringToHash string) string {
 }
 
 func LoginHandler(w http.ResponseWriter, r *http.Request) {
-	var teacher Teacher
+	var teacher models.Teacher
 
 	err := json.NewDecoder(r.Body).Decode(&teacher)
 

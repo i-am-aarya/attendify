@@ -5,6 +5,7 @@ Connect, CRUD
 package database
 
 import (
+	"attendify/teacher-server/models"
 	"context"
 	"fmt"
 	"log"
@@ -19,6 +20,27 @@ var (
 	attendifyDatabase  *mongo.Database
 	teacherCredentials *mongo.Collection
 )
+
+func GetTeacherByEmailID(emailID string) (*models.Teacher, error) {
+
+	filter := bson.M{"emailID": emailID}
+
+	var teacher models.Teacher
+	// err := client.Database("")
+	err := teacherCredentials.FindOne(context.TODO(), filter).Decode(&teacher)
+
+	if err != nil {
+		if err == mongo.ErrNoDocuments {
+			return nil, nil
+		} else {
+			log.Println("Error fetching teacher: ", err)
+			return nil, err
+		}
+	}
+
+	return &teacher, nil
+
+}
 
 func MatchEmailAndPassword(email string, password string) (bool, error) {
 
