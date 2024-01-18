@@ -6,11 +6,11 @@ const DepartmentOptionPanel = () => {
     return (
         <>
         <div className="expanded-option-panel">
-            <DepartmentOption semester="Software"/>
-            <DepartmentOption semester="IT"/>
-            <DepartmentOption semester="Computer"/>
-            <DepartmentOption semester="Electrical"/>
-            <DepartmentOption semester="Civil"/>
+            <DepartmentOption department="Software"/>
+            <DepartmentOption department="IT"/>
+            <DepartmentOption department="Computer"/>
+            <DepartmentOption department="Electrical"/>
+            <DepartmentOption department="Civil"/>
         </div>
         </>
     );

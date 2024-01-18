@@ -1,23 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
+import "./DepartmentOption.css";
+import SemesterSelectionPanel from "./SemesterSelectionPanel";
 
 /**
  * DepartmentOption is the individual option, collection of which
- * appears in the DepartmentOptionsPanel, which appears in
+ * appears in the ExpandedOptionsPanel, which appears in
  * app sidebar
  */
 
-function doSth() {
-    console.log("Print")
-}
+const DepartmentOption = ({ department }: { department: string }) => {
+  const [expanded, setExpaneded] = useState(false);
 
-const DepartmentOption = ({semester}: {semester: string}) => {
-    return (
-        <>
-        <div className="expanded-option" onClick={doSth}>
-            {semester}
+  function handleDepartmentClick() {
+    setExpaneded(!expanded);
+  }
+
+  return (
+    <>
+      <div className="expanded-option">
+        <div className={expanded ? "department-text-wrapper-expanded" : "department-text-wrapper"} onClick={handleDepartmentClick}>
+            {department}
         </div>
-        </>
-    );
+        {
+            expanded && <SemesterSelectionPanel/>
+        }
+      </div>
+    </>
+  );
 };
 
 export default DepartmentOption;

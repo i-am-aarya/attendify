@@ -3,13 +3,12 @@
 .sidebar {
     background-color: #91C8E4;
     flex: 1;
-    /* height: fit-content; */
-    height: 100vh;
     padding: 50px;
     display: flex;
     flex-direction: column;
     max-width: 18vw;
-    /* flex-direction: row; */
+    box-sizing: content-box;
+    min-height: 100vh;
 
     font-family: 'Poppins';
     font-weight: #FFFFFF;
