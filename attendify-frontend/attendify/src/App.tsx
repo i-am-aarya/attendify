@@ -11,14 +11,9 @@ function App() {
         <Routes>
             <Route path='/' element={<LoginPage/>}/>
             <Route path='/dashboard' element={<ProtectedRoutes><MainContent/></ProtectedRoutes>} />
-            {/* <Route path='/dashboard' element={<MainContent/>} /> */}
         </Routes>
         </>
     );
 }
 
 export default App;
-
-
-
-{/* <Route path='/dashboard' element={<ProtectedRoutes><MainContent/></ProtectedRoutes>} /> */}
