@@ -10,7 +10,7 @@
 
 .sidebar-expandable,
 .sidebar-expandable-expanded {
-    width: 15vw;
+    width: 18vw;
     display: flex;
     flex-direction: column;
     background-color: transparent;
@@ -33,7 +33,7 @@
 
 .sidebar-expandable-expanded {
     color: #FFFFFFFF;
-    box-shadow: 0 0 8px;
+    box-shadow: 0 0 5px;
 }
 
 .sidebar-expandable {
@@ -42,7 +42,7 @@
 }
 
 .sidebar-expandable:hover {
-    box-shadow: 0 0 4px;
+    box-shadow: 0 0 3px;
     color: #FFFFFFFF;
 
 }
@@ -60,5 +60,6 @@
     align-items: center;
     justify-content: space-between;
     list-style: none;
-    position: relative
+    position: relative;
+    margin-right: 1vw;
 }

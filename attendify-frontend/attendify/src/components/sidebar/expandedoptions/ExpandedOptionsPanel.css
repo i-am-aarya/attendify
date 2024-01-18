@@ -3,13 +3,24 @@
     display: flex;
     flex-direction: column;
     align-items: start;
-    padding-left: 30px;
+    padding-left: 2.5vw;
 }
 
 .expanded-option {
-    margin-bottom: 15px;
+    margin-bottom: 2vh;
 }
 
 .expanded-option:last-child {
-    margin-bottom: 15px;
+    margin-bottom: 3.5vh;
 }
+
+.DepartmentOption:hover {
+    background-color: #fff; 
+  }
+
+  .department-divider {
+    width: 87%;
+    margin: 1px 0px; 
+    border: 1px solid #FFFFFF80;
+    margin-bottom: 2vh; 
+  }

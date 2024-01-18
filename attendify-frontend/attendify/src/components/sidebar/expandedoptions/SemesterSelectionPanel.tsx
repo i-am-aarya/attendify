@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import SemesterOption from './SemesterOption'
+import "./SemesterSelectionPanel.css"
 
 const SemesterSelectionPanel = () => {
 
