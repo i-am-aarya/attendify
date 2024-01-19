@@ -1,4 +1,4 @@
-package authentication
+package teacherhandlers
 
 import (
 	"attendify/teacher-server/database"
@@ -48,9 +48,13 @@ func hashSha512(stringToHash string) string {
 }
 
 func LoginHandler(w http.ResponseWriter, r *http.Request) {
+	log.Println("Login requested")
+
 	var teacher models.Teacher
 
 	err := json.NewDecoder(r.Body).Decode(&teacher)
+
+	// log.Println("")
 
 	if err != nil {
 		http.Error(w, "Invalid request body", http.StatusBadRequest)
@@ -80,5 +84,7 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 	} else {
 		http.Error(w, "Invalid email or password", http.StatusUnauthorized)
 	}
+
+	log.Println(teacher.EmailID, " logged in successfully.")
 
 }

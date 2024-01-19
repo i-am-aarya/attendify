@@ -1,6 +1,5 @@
 import axios from 'axios';
 import React, { useEffect } from 'react'
-// import {useHistory} from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
 
 type ProtectedRouteProps = {
@@ -22,7 +21,7 @@ const ProtectedRoutes: React.FC<ProtectedRouteProps> = ({children}) => {
 
     const checkAuth = async () => {
         try {
-            await axios.get('http://localhost:8080/protected-resource', {
+            await axios.get('http://localhost:8080/api/protected-resource', {
                 headers : {
                     Authorization: `Bearer ${token}`
                 }

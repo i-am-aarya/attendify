@@ -3,7 +3,6 @@ package main
 import (
 	"attendify/teacher-server/database"
 	"attendify/teacher-server/routes"
-	"fmt"
 	"log"
 	"net/http"
 	"time"
@@ -16,7 +15,7 @@ func main() {
 	router := mux.NewRouter()
 
 	database.ConnectToDatabase()
-	fmt.Println("Connected to database")
+	log.Println("Connected to database")
 
 	routes.SetupRoutes(router)
 

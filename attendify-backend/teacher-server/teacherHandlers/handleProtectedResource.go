@@ -1,4 +1,4 @@
-package authentication
+package teacherhandlers
 
 import (
 	"attendify/teacher-server/database"

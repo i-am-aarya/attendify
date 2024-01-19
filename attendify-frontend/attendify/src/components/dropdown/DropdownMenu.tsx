@@ -17,10 +17,7 @@ const DropdownMenu = () => {
   useEffect(() => {
     if (token) {
       const decoded = jwtDecode<Teacher>(token)
-      // setTeacherName(decoded['emailID'])
       setTeacherName(decoded.emailID)
-
-      console.log(decoded)
     }
 
   })

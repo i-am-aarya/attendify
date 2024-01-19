@@ -1,12 +1,13 @@
 package routes
 
 import (
-	"attendify/teacher-server/authentication"
+	teacherhandlers "attendify/teacher-server/teacherHandlers"
 
 	"github.com/gorilla/mux"
 )
 
 func SetupRoutes(router *mux.Router) {
-	router.HandleFunc("/login", authentication.LoginHandler).Methods("POST")
-	router.HandleFunc("/protected-resource", authentication.HandleProtectedResource).Methods("GET")
+	router.HandleFunc("/api/login", teacherhandlers.LoginHandler).Methods("POST")
+	router.HandleFunc("/api/protected-resource", teacherhandlers.HandleProtectedResource).Methods("GET")
+	router.HandleFunc("/api/find-students", teacherhandlers.HandleFindStudents).Methods("GET")
 }

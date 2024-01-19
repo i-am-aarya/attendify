@@ -39,12 +39,10 @@ const LoginPage: React.FC = () => {
       return;
     }
 
-    console.log("Request can be sent")
-
     try {
-      const response = await axios.post<LoginResponse>('http://localhost:8080/login', {
+      const response = await axios.post<LoginResponse>('http://localhost:8080/api/login', {
         emailID: email,
-        password: password
+        password: password,
       })
 
       localStorage.setItem('token', response.data.token)
