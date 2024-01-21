@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import "./Sidebar.css";
 import ShiftExpandable from "./ShiftExpandable";
 import axios from "axios";
+import { StudentAttendance } from "../MainContent/MainContent";
+// import { Student } from "../MainContent/MainContent";
 
 export interface FilterData {
   shift: string;
@@ -10,19 +12,25 @@ export interface FilterData {
 }
 
 export interface Student {
-    name: string,
-    shift: string,
-    department: string,
-    semester: string
+  name: string,
+  symbolNumber: string,
+  shift: string,
+  department: string,
+  semester: string,
 }
+
 
 const Sidebar = (
     {
         studentsArray,
-        setStudentsArray
+        setStudentsArray,
+        attendanceArray,
+        setAttendanceArray
     }: {
         studentsArray: Array<Student>
-        setStudentsArray: React.Dispatch<React.SetStateAction<Student[]>>
+        setStudentsArray: React.Dispatch<React.SetStateAction<Student[]>>,
+        attendanceArray: Array<StudentAttendance>
+        setAttendanceArray: React.Dispatch<React.SetStateAction<StudentAttendance[]>>,
     }
 ) => {
   const [filter, setFilter] = useState<FilterData>({
@@ -42,29 +50,27 @@ const Sidebar = (
             params: filter
         });
 
-        // console.log(`Response: ${response.data}`)
-
         const students: Array<Student> = response.data
+        // console.log(students)
 
-        // if (students.length === 0) {
-        //   // console.log("No Students Found")
-        //   setStudentsArray([])
-        // } else {
-        //   setStudentsArray(students)
-        // }
 
         if (!students) {
           console.log("No Students Found")
           setStudentsArray([])
+          setAttendanceArray([])
         } else if (students.length === 0) {
           console.log("Empty students array")
           setStudentsArray([])
+          setAttendanceArray([])
         } else {
           setStudentsArray(students)
+          const initialAttendance: StudentAttendance[] =  studentsArray.map((student) => ({
+            student,
+            attendance: false
+          }))
+
+          setAttendanceArray(initialAttendance)
         }
-
-
-        // console.log(students)
 
     } catch (error) {
         console.error(error)

@@ -35,3 +35,30 @@
 .sidebar-students-display-area {
     display: flex;
 }
+
+.submit-button-container {
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    /* align-items: center; */
+    /* justify-content: center; */
+}
+
+.submit-attendance-button,
+.submit-attendance-button:hover {
+    background-color: #749BC2;
+    padding: 20px 100px;
+    border-radius: 15px;
+    border: 0;
+    margin: 50px 0px;
+    /* align-self: center; */
+    /* justify-self: center; */
+    font-size: 2rem;
+    font-family: "Poppins";
+    color: #ffffffff;
+}
+
+.submit-attendance-button:hover {
+    background-color: #4682A9;
+    cursor: pointer;
+}

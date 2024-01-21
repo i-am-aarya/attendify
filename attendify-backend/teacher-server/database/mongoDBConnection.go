@@ -132,3 +132,37 @@ func FindStudentsByFilter(filter models.Filter) ([]models.Student, error) {
 
 	return studentsList, err
 }
+
+func UpdateStudentRecords(student models.StudentAttendance, teacherEmail string) error {
+	query := bson.M{"symbolNumber": student.Student.SymbolNumber}
+
+	var status string
+	if student.Attendance {
+		status = "present"
+	} else {
+		status = "absent"
+	}
+
+	update := bson.M{
+		"$push": bson.M{
+			"attendance.$[elem].dates": bson.M{
+				"date":   time.Now().Format("2006-01-02"),
+				"status": status,
+			},
+		},
+	}
+
+	// arrayFilters := []bson.M{{"elem.teacherEmail": teacherEmail}}
+	arrayFilters := options.ArrayFilters{
+		Filters: []interface{}{bson.M{"elem.teacherEmail": teacherEmail}},
+	}
+
+	res, err := studentsCollection.UpdateOne(context.Background(), query, update, options.Update().SetArrayFilters(arrayFilters))
+
+	if err != nil {
+		return err
+	}
+	log.Println("Number of documents matched: ", res.MatchedCount)
+
+	return nil
+}

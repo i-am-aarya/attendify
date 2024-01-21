@@ -14,21 +14,9 @@ import (
  */
 func HandleFindStudents(w http.ResponseWriter, r *http.Request) {
 
-	log.Println("Find students called")
-
-	// fmt.Println(r.Body)
-
-	// var filter models.Filter
-	// err := json.NewDecoder(r.Body).Decode(&filter)
-
-	// if err != nil {
-	// 	log.Println("student filter could not be decoded")
-	// 	http.Error(w, "invalid student filter", http.StatusBadRequest)
-	// 	return
-	// }
+	log.Println("Request to find students")
 
 	queryValues := r.URL.Query()
-	// log.Println("Query Values: ", queryValues)
 
 	shift := queryValues.Get("shift")
 	department := queryValues.Get("department")

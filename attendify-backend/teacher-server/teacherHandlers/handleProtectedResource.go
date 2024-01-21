@@ -28,7 +28,7 @@ func HandleProtectedResource(w http.ResponseWriter, r *http.Request) {
 	rawToken := tokenParts[1]
 
 	tokenString, err := jwt.Parse(rawToken, func(t *jwt.Token) (interface{}, error) {
-		return []byte(secretKey), nil
+		return []byte(SecretKey), nil
 	})
 
 	if err != nil {

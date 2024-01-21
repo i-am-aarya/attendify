@@ -13,7 +13,7 @@ import (
 	"github.com/golang-jwt/jwt/v4"
 )
 
-var secretKey = "SuperSecretKeyNoOneShouldKnow"
+var SecretKey = "SuperSecretKeyNoOneShouldKnow"
 
 func generateJWT(emailID string) (string, error) {
 
@@ -28,7 +28,7 @@ func generateJWT(emailID string) (string, error) {
 
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 
-	signedToken, err := token.SignedString([]byte(secretKey))
+	signedToken, err := token.SignedString([]byte(SecretKey))
 
 	// if err != nil {
 	// 	http.Error(w, "error generating token", http.StatusInternalServerError)

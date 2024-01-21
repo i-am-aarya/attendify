@@ -19,8 +19,36 @@ type Filter struct {
 }
 
 type Student struct {
-	Name       string `json:"name"`
-	Department string `json:"department"`
-	Shift      string `json:"shift"`
-	Semester   string `json:"semester"`
+	Name         string `json:"name"`
+	SymbolNumber string `json:"symbolNumber"`
+	Department   string `json:"department"`
+	Shift        string `json:"shift"`
+	Semester     string `json:"semester"`
+}
+
+// this is what is obtained from the frontend
+// this isnt for usage with/in database
+type StudentAttendance struct {
+	Student    Student `json:"student"`
+	Attendance bool    `json:"attendance"`
+}
+
+// for studentDetails collection
+type AttendanceDate struct {
+	Date   string `json:"date"`
+	Status string `json:"status"`
+}
+
+type Attendance struct {
+	TeacherEmail    string           `json:"teacherEmail"`
+	AttendanceDates []AttendanceDate `json:"dates"`
+}
+
+type StudentDetails struct {
+	Name              string       `json:"name"`
+	SymbolNumber      string       `json:"symbolNumber"`
+	Semester          string       `json:"semester"`
+	Department        string       `json:"department"`
+	Shift             string       `json:"shift"`
+	StudentAttendance []Attendance `json:"attendance"`
 }
