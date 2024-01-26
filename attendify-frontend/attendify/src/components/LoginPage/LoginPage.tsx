@@ -8,6 +8,9 @@ import Cookies from 'js-cookie'
 import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
 
+import { Bounce, ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 interface LoginResponse {
   token: string;
 }
@@ -51,7 +54,25 @@ const LoginPage: React.FC = () => {
 
 
     } catch (error) {
-      console.error(error)
+
+      const errorMessage = "Oops! 🙁 Login unsuccessful. Please check your credentials and try again."
+
+      // toast('🦄 Wow so easy!', {
+      //   position: "top-center",
+      //   autoClose: 5000,
+      //   hideProgressBar: false,
+      //   closeOnClick: true,
+      //   pauseOnHover: true,
+      //   draggable: true,
+      //   progress: undefined,
+      //   theme: "light",
+      //   transition: Bounce,
+      //   });
+
+        toast.error(errorMessage, {
+          position: "top-center"
+        })
+      // console.error(error)
     }
 
   };

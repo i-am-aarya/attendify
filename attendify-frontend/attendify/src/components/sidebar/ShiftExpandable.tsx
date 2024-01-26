@@ -6,41 +6,28 @@ import { FilterData } from "./Sidebar";
 const ShiftExpandable = ({
   shiftName,
   filter,
-  setFilter
+  setFilter,
+  isSelected,
+  handleShiftSelection
 }: {
   shiftName: string,
   filter: FilterData,
   setFilter: React.Dispatch<React.SetStateAction<FilterData>>
+  isSelected: boolean,
+  handleShiftSelection: (shiftName: string) => void
 }) => {
-
-  const [shiftSelected, setshiftSelected] = useState(false);
-
-  const handleShiftSelection = () => {
-    setshiftSelected(!shiftSelected);
-
-    setFilter((prevFilter) => ({...prevFilter, shift: shiftName.toLowerCase()}))
-
-  };
-
-  useEffect(() => {
-    if (!shiftSelected) {
-    setFilter((prevFilter) => ({...prevFilter, shift: ''}))
-    }
-
-  }, [shiftSelected])
-
 
   return (
     <>
       <div
         className={
-          shiftSelected ? "sidebar-expandable-expanded" : "sidebar-expandable"
+          isSelected ? "sidebar-expandable-expanded" : "sidebar-expandable"
         }
       >
-        <div className="shift-text-wrapper" onClick={handleShiftSelection}>
+        <div className="shift-text-wrapper" onClick={() => {handleShiftSelection(shiftName)}}>
           <ul>
             <li>{shiftName}</li>
-            {shiftSelected ? (
+            {isSelected ? (
               <li>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -71,7 +58,7 @@ const ShiftExpandable = ({
             )}
           </ul>
         </div>
-        {shiftSelected ? <DepartmentOptionPanel filter={filter} setFilter={setFilter} /> : null}
+        {isSelected ? <DepartmentOptionPanel filter={filter} setFilter={setFilter} /> : null}
       </div>
     </>
   );

@@ -6,6 +6,7 @@ import NavBar from "../navbar/NavBar";
 import { Student } from "../sidebar/Sidebar";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 
 export interface StudentAttendance {
@@ -64,10 +65,14 @@ const MainContent = () => {
 
       console.log(response)
 
+      toast.success("Attendance Records Updated!", {position: "top-center", autoClose: 2000})
 
       navigate("/")
 
+      // navigate to records
+
     } catch (error) {
+      toast.error("Error! Records could not be updated.", {position: "top-center", autoClose: 2000})
       console.error(error)
     }
   }

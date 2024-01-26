@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { jwtDecode } from 'jwt-decode';
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 
@@ -12,24 +13,33 @@ const ProtectedRoutes: React.FC<ProtectedRouteProps> = ({children}) => {
 
     const token = localStorage.getItem('token');
 
-    useEffect(() => {
-        checkAuth()
-        if (!token) {
-            navigate('/')
-        }
-    }, [])
-
     const checkAuth = async () => {
         try {
-            await axios.get('http://localhost:8080/api/protected-resource', {
-                headers : {
-                    Authorization: `Bearer ${token}`
+            if (token) {
+                const decodedToken = jwtDecode(token)
+
+                if (decodedToken && decodedToken.exp !== undefined && decodedToken.exp * 1000 < Date.now()) {
+
+                    localStorage.removeItem('token')
+                    navigate('/')
+
+                } else {
+                    await axios.get('http://localhost:8080/api/protected-resource', {
+                        headers : {
+                            Authorization: `Bearer ${token}`
+                        }
+                    })
                 }
-            })
-        } catch (error) {
+            }
+        } catch(error) {
             console.error(error)
         }
     }
+
+    useEffect(() => {
+
+        checkAuth()
+    }, [navigate, token])
 
   return (
     <div>

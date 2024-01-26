@@ -12,40 +12,31 @@ import { FilterData } from "../Sidebar";
 const DepartmentOption = ({
   department,
   filter,
-  setFilter
+  setFilter,
+  isSelected,
+  handleDepartmentSelection
 }: {
   department: string;
   filter: FilterData,
   setFilter: React.Dispatch<React.SetStateAction<FilterData>>
+  isSelected: boolean,
+  handleDepartmentSelection: (departmentName: string) => void
 }) => {
-  const [departmentSelected, setdepartmentSelected] = useState(false);
-
-  function handleDepartmentClick() {
-    setdepartmentSelected(!departmentSelected);
-    setFilter((prevFilter) => ({...prevFilter, department: department.toLowerCase()}))
-
-  }
-
-  useEffect(() => {
-    if (!departmentSelected) {
-      setFilter((prevFilter) => ({...prevFilter, department: ''}))
-    }
-  }, [departmentSelected])
 
   return (
     <>
       <div className="expanded-option">
         <div
           className={
-            departmentSelected
+            isSelected
               ? "department-text-wrapper-expanded"
               : "department-text-wrapper"
           }
-          onClick={handleDepartmentClick}
+          onClick={() => {handleDepartmentSelection(department)}}
         >
           {department}
         </div>
-        {departmentSelected && <SemesterSelectionPanel filter={filter} setFilter={setFilter} />}
+        {isSelected && <SemesterSelectionPanel filter={filter} setFilter={setFilter} />}
       </div>
     </>
   );

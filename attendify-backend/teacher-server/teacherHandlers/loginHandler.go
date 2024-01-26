@@ -17,7 +17,7 @@ var SecretKey = "SuperSecretKeyNoOneShouldKnow"
 
 func generateJWT(emailID string) (string, error) {
 
-	expirationTime := time.Now().Add(time.Hour * 1)
+	expirationTime := time.Now().Add(time.Minute * 30)
 
 	claims := models.Claims{
 		RegisteredClaims: jwt.RegisteredClaims{
