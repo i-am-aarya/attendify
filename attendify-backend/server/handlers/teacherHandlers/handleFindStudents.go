@@ -33,7 +33,6 @@ func HandleFindStudents(w http.ResponseWriter, r *http.Request) {
 	studentsList, err := database.FindStudentsByFilter(filter)
 
 	if err != nil {
-		// log.Println("")
 		http.Error(w, "error finding students", http.StatusInternalServerError)
 		log.Println("Error finding students: ", err)
 		return

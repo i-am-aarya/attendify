@@ -61,3 +61,9 @@ type LoginCredential struct {
 	EmailID  string `json:"emailID"`
 	Password string `json:"password"`
 }
+
+type StudentAttendanceRecords struct {
+	Attendance   Attendance `bson:"attendance"`
+	Name         string     `bson:"name"`
+	SymbolNumber string     `bson:"symbolnumber"`
+}

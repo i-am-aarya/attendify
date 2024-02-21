@@ -1,6 +1,8 @@
 package teacherhandlers
 
 import (
+	"attendify/teacher-server/database"
+	"encoding/json"
 	"log"
 	"net/http"
 	"os"
@@ -41,5 +43,15 @@ func GetAttendanceRecordsHandler(w http.ResponseWriter, r *http.Request) {
 	semester := r.URL.Query().Get("semester")
 
 	log.Printf("TeacherEmail: %s Shift: %s Department: %s Semester: %s\n", teacherEmail, shift, department, semester)
+
+	result, err := database.GetAttendanceRecords(teacherEmail, department, shift, semester)
+
+	if err != nil {
+		http.Error(w, "Error fetching attendance records", http.StatusInternalServerError)
+	}
+
+	// log.Println(result)
+
+	json.NewEncoder(w).Encode(result)
 
 }

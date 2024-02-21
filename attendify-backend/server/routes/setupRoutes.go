@@ -10,6 +10,7 @@ import (
 func SetupRoutes(router *mux.Router) {
 	router.HandleFunc("/api/login", teacherhandlers.LoginHandler).Methods("POST")
 	router.HandleFunc("/api/protected-resource", teacherhandlers.HandleProtectedResource).Methods("GET")
+
 	router.HandleFunc("/api/find-students", teacherhandlers.HandleFindStudents).Methods("GET")
 	router.HandleFunc("/api/submit-attendance", teacherhandlers.HandleAttendanceSubmission).Methods("POST")
 	router.HandleFunc("/api/get-attendance-records", teacherhandlers.GetAttendanceRecordsHandler).Methods("GET")

@@ -14,7 +14,7 @@ const DeleteStudent = () => {
     event.preventDefault();
 
     try {
-      const response = axios.get(
+      const response = await axios.get(
         `http://localhost:8080/api/admin/delete-student?symbolnumber=${studentSymbolNumber}`
       );
 

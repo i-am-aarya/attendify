@@ -14,7 +14,7 @@ const DeleteTeacher = () => {
     event.preventDefault();
 
     try {
-      const response = axios.get(
+      const response = await axios.get(
         `http://localhost:8080/api/admin/delete-teacher?emailid=${teacherEmail}`
       );
 
