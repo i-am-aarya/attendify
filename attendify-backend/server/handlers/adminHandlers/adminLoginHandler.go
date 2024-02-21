@@ -59,8 +59,6 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 	if match {
 		signedToken, err := generateJWT(admin.EmailID)
 
-		// log.Println(signedToken)
-
 		if err != nil {
 			http.Error(w, "token generation error", http.StatusInternalServerError)
 			return

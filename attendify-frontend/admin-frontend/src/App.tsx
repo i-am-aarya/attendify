@@ -11,6 +11,8 @@ import AddStudent from './pages/student/AddStudent';
 import AddTeacher from './pages/teacher/AddTeacher';
 import DeleteStudent from './pages/student/DeleteStudent';
 import DeleteTeacher from './pages/teacher/DeleteTeacher';
+import EditStudent from './pages/student/EditStudent';
+import EditTeacher from './pages/teacher/EditTeacher';
 
 
 
@@ -25,11 +27,15 @@ function App() {
     <Routes>
       <Route path='/' element={<Login/>}/>
       <Route path='/dashboard' element={<ProtectedRoutes><Dashboard children={null}/></ProtectedRoutes>}/>
-      <Route path='/view-students' element={<ProtectedRoutes><ViewStudents/></ProtectedRoutes>}/>
+
       <Route path='/add-student' element={<ProtectedRoutes><AddStudent/></ProtectedRoutes>}/>
+      <Route path='/edit-student' element={<ProtectedRoutes><EditStudent/></ProtectedRoutes>}/>
       <Route path='/delete-student' element={<ProtectedRoutes><DeleteStudent/></ProtectedRoutes>}/>
+
       <Route path='/add-teacher' element={<ProtectedRoutes><AddTeacher/></ProtectedRoutes>}/>
+      <Route path='/edit-teacher' element={<ProtectedRoutes><EditTeacher/></ProtectedRoutes>}/>
       <Route path='/delete-teacher' element={<ProtectedRoutes><DeleteTeacher/></ProtectedRoutes>}/>
+
     </Routes>
     </ThemeProvider>
     </>

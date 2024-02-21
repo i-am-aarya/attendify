@@ -17,8 +17,6 @@ func main() {
 	database.ConnectToDatabase()
 	log.Println("Connected to database")
 
-	routes.SetupRoutes(router)
-
 	// setting cors
 	corsHandler := handlers.CORS(
 		handlers.AllowedHeaders([]string{"*"}),
@@ -26,6 +24,7 @@ func main() {
 		handlers.AllowedMethods([]string{"*"}),
 		handlers.AllowedOrigins([]string{"*"}),
 	)
+	routes.SetupRoutes(router)
 
 	port := ":8080"
 

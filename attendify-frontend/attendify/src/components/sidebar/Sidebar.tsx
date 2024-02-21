@@ -86,6 +86,30 @@ const Sidebar = ({
     }
   };
 
+
+  const handleFindAttendanceRecords = (event: React.FormEvent) => {
+    event.preventDefault()
+
+    try {
+
+      const jwt = localStorage.getItem('token')
+      const response = axios.get("http://localhost:8080/api/get-attendance-records",
+      {
+        params: filter,
+        headers: {
+          Authorization: `Bearer ${jwt}`
+        }
+      }
+      )
+
+    } catch (error) {
+      // toast.error("")
+      console.error(error)
+      // create a toast to display error
+    }
+
+  }
+
   const checkSearchAvailable = () => {
     if (filter.department && filter.semester && filter.shift) {
       return true;
@@ -136,6 +160,18 @@ const Sidebar = ({
           disabled={searchAvailable ? false : true}
         >
           🔍 Find Students
+        </button>
+
+        <button
+          onClick={handleFindAttendanceRecords}
+          className={
+            searchAvailable
+              ? "find-students-button"
+              : "find-students-button-disabled"
+          }
+          disabled={searchAvailable ? false : true}
+        >
+          🔍 Find Attendance Records
         </button>
       </div>
     </>

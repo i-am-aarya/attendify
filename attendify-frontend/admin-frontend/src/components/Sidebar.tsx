@@ -7,13 +7,11 @@ import {
   sidebarClasses,
 } from "react-pro-sidebar";
 import {
-  AdminPanelSettings,
   People,
   PersonAdd,
+  PersonAddAlt,
   PersonOutline,
-  PersonPin,
   PersonRemove,
-  PersonSearch,
 } from "@mui/icons-material";
 import { Typography } from "@mui/material";
 import { Link } from "react-router-dom";
@@ -68,25 +66,19 @@ const DashboardSidebar = () => {
             style={{ fontFamily: "Poppins" }}
             icon={<People />}
           >
-            {/* <MenuItem
-              icon={<PersonPin />}
-              component={<Link to="/view-students" />}
-            >
-              <Typography sx={{ fontFamily: "Poppins" }}>View</Typography>{" "}
-            </MenuItem> */}
-
-            {/* <MenuItem
-              icon={<PersonSearch />}
-              component={<Link to="/search-students" />}
-            >
-              <Typography sx={{ fontFamily: "Poppins" }}>Search</Typography>
-            </MenuItem> */}
 
             <MenuItem
               icon={<PersonAdd />}
               component={<Link to="/add-student" />}
             >
               <Typography sx={{ fontFamily: "Poppins" }}>Add</Typography>
+            </MenuItem>
+
+            <MenuItem
+              icon={<PersonAddAlt />}
+              component={<Link to="/edit-student" />}
+            >
+              <Typography sx={{ fontFamily: "Poppins" }}>Edit</Typography>
             </MenuItem>
 
             <MenuItem
@@ -102,25 +94,20 @@ const DashboardSidebar = () => {
             style={{ fontFamily: "Poppins" }}
             icon={<PersonOutline />}
           >
-            {/* <MenuItem
-              icon={<PersonPin />}
-              component={<Link to="/view-teachers" />}
-            >
-              <Typography sx={{ fontFamily: "Poppins" }}>View</Typography>{" "}
-            </MenuItem> */}
-
-            {/* <MenuItem
-              icon={<PersonSearch />}
-              component={<Link to="/search-teachers" />}
-            >
-              <Typography sx={{ fontFamily: "Poppins" }}>Search</Typography>
-            </MenuItem> */}
-
+            
             <MenuItem
               icon={<PersonAdd />}
               component={<Link to="/add-teacher" />}
             >
               <Typography sx={{ fontFamily: "Poppins" }}>Add</Typography>
+            </MenuItem>
+
+
+            <MenuItem
+              icon={<PersonAddAlt />}
+              component={<Link to="/edit-teacher" />}
+            >
+              <Typography sx={{ fontFamily: "Poppins" }}>Edit</Typography>
             </MenuItem>
 
             <MenuItem
@@ -131,39 +118,6 @@ const DashboardSidebar = () => {
             </MenuItem>
           </SubMenu>
 
-          {/* <SubMenu
-            label="Admin"
-            style={{ fontFamily: "Poppins" }}
-            icon={<AdminPanelSettings />}
-          >
-            <MenuItem
-              icon={<PersonPin />}
-              component={<Link to="/view-admin" />}
-            >
-              <Typography sx={{ fontFamily: "Poppins" }}>View</Typography>{" "}
-            </MenuItem>
-
-            <MenuItem
-              icon={<PersonSearch />}
-              component={<Link to="/search-admin" />}
-            >
-              <Typography sx={{ fontFamily: "Poppins" }}>Search</Typography>
-            </MenuItem>
-
-            <MenuItem
-              icon={<PersonAdd />}
-              component={<Link to="/add-admin" />}
-            >
-              <Typography sx={{ fontFamily: "Poppins" }}>Add</Typography>
-            </MenuItem>
-
-            <MenuItem
-              icon={<PersonRemove />}
-              component={<Link to="/remove-admin" />}
-            >
-              <Typography sx={{ fontFamily: "Poppins" }}>Remove</Typography>
-            </MenuItem>
-          </SubMenu> */}
         </Menu>
       </Sidebar>
     </>

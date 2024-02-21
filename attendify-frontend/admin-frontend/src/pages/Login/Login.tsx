@@ -78,7 +78,7 @@ const Login = () => {
     <Box
       sx={{
         display: "flex",
-        flexDirection: "column",
+        flexDirection: "row",
         // justifyContent: 'center'
         alignItems: "center",
         backgroundColor: "#91C8E4",
@@ -100,14 +100,24 @@ const Login = () => {
         </Alert>
       </Snackbar>
 
+      <Box sx={{flex:'1', m:12}}>
+
       <Typography
-        variant="h2"
-        sx={{ fontWeight: "bold", fontStyle: "Poppins", margin: "100px" }}
+        variant="h1"
+        sx={{ textAlign: 'center', color:"#4682a9", fontSize:"10rem", fontWeight: "800", fontFamily: "Poppins", margin: "100px" }}
       >
-        Attendify - Admin Login
+        Attendify
       </Typography>
 
-      <Box
+      <Typography
+        variant="h4"
+        sx={{ textAlign: 'center', color: "#4682a9", fontWeight: "bold", fontFamily: "Poppins", margin: "100px" }}
+      >
+        Admin Dashboard
+      </Typography>
+      </Box>
+
+      {/* <Box
         sx={{
           borderRadius: "100px",
           backgroundColor: "purple",
@@ -121,12 +131,14 @@ const Login = () => {
         }}
       >
         <LockOutlined sx={{ color: "white", width: "30px", height: "50px" }} />
-      </Box>
+      </Box> */}
 
       <Box
         sx={{
           display: "flex",
           flexDirection: "column",
+          flex:'1',
+          m:12,
           maxWidth: "500px",
           backgroundColor: "#fff",
           borderRadius: "5px",
@@ -135,7 +147,7 @@ const Login = () => {
         }}
       >
         {/* <Lock */}
-        <Typography variant="h4" sx={{margin:"10px"}}>
+        <Typography variant="h4" sx={{margin:2, fontFamily: "Poppins", color:"#4682a9", fontWeight:"600"}}>
           Login
         </Typography>
 
