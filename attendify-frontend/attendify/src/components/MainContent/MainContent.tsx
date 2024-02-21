@@ -44,14 +44,6 @@ const MainContent = () => {
   const handleAttendanceSubmission = async (event: React.FormEvent) => {
     event.preventDefault()
     try {
-
-      console.log("ATTENDANCE ARRAY")
-      console.log("ATTENDANCE ARRAY")
-
-      console.log(attendanceArray)
-
-      console.log("ATTENDANCE ARRAY")
-      console.log("ATTENDANCE ARRAY")
       const jwt = localStorage.getItem('token')
       const response = await axios.post(
         "http://localhost:8080/api/submit-attendance",

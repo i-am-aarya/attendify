@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
+	"os"
 	"strings"
 
 	"github.com/golang-jwt/jwt/v4"
@@ -16,7 +17,7 @@ func HandleAttendanceSubmission(w http.ResponseWriter, r *http.Request) {
 
 	tokenString := strings.Split(authorizationHeader, " ")[1]
 	token, err := jwt.Parse(tokenString, func(t *jwt.Token) (interface{}, error) {
-		return []byte(SecretKey), nil
+		return []byte(os.Getenv("SecretKey")), nil
 	})
 
 	if err != nil {

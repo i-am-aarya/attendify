@@ -1,19 +1,17 @@
-package teacherhandlers
+package adminhandlers
 
 import (
 	"attendify/teacher-server/database"
+	"attendify/teacher-server/handlers/utils"
 	"attendify/teacher-server/models"
-	"crypto/sha512"
-	"encoding/hex"
 	"encoding/json"
 	"log"
 	"net/http"
+	"os"
 	"time"
 
 	"github.com/golang-jwt/jwt/v4"
 )
-
-var SecretKey = "SuperSecretKeyNoOneShouldKnow"
 
 func generateJWT(emailID string) (string, error) {
 
@@ -28,41 +26,28 @@ func generateJWT(emailID string) (string, error) {
 
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 
-	signedToken, err := token.SignedString([]byte(SecretKey))
-
-	// if err != nil {
-	// 	http.Error(w, "error generating token", http.StatusInternalServerError)
-	// 	return
-	// }
+	signedToken, err := token.SignedString([]byte(os.Getenv("SecretKey")))
 
 	return signedToken, err
 
 }
 
-func hashSha512(stringToHash string) string {
-	hasher := sha512.New()
-	hasher.Write([]byte(stringToHash))
-	hashBytes := hasher.Sum(nil)
-	hashedPassword := hex.EncodeToString(hashBytes)
-	return hashedPassword
-}
-
+// handle admin login requests
 func LoginHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("Login requested")
 
-	var teacher models.Teacher
+	var admin models.LoginCredential
 
-	err := json.NewDecoder(r.Body).Decode(&teacher)
-
-	// log.Println("")
+	err := json.NewDecoder(r.Body).Decode(&admin)
 
 	if err != nil {
 		http.Error(w, "Invalid request body", http.StatusBadRequest)
 		return
 	}
 
-	hashedPassword := hashSha512(teacher.Password)
-	match, err := database.MatchEmailAndPassword(teacher.EmailID, hashedPassword)
+	hashedPassword := utils.HashSha512(admin.Password)
+
+	match, err := database.MatchEmailAndPassword(admin.EmailID, hashedPassword, "admin")
 
 	if err != nil {
 		http.Error(w, "internal server error", http.StatusInternalServerError)
@@ -70,9 +55,11 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// match found in database
 	if match {
-		// unsignedToken, err := generateJWT(teacher.EmailID)
-		signedToken, err := generateJWT(teacher.EmailID)
+		signedToken, err := generateJWT(admin.EmailID)
+
+		// log.Println(signedToken)
 
 		if err != nil {
 			http.Error(w, "token generation error", http.StatusInternalServerError)
@@ -80,11 +67,11 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 		}
 
 		w.Header().Set("Content-Type", "application/json")
-		json.NewEncoder(w).Encode(map[string]string{"token": signedToken})
+		json.NewEncoder(w).Encode(map[string]string{"adminToken": signedToken})
+		log.Println(admin.EmailID, " logged in successfully.")
 	} else {
+		log.Println("No match found in database for: ", admin.EmailID)
 		http.Error(w, "Invalid email or password", http.StatusUnauthorized)
 	}
-
-	log.Println(teacher.EmailID, " logged in successfully.")
 
 }

@@ -2,10 +2,10 @@ package models
 
 import "github.com/golang-jwt/jwt/v4"
 
-type Teacher struct {
-	EmailID  string `json:"emailID"`
-	Password string `json:"password"`
-}
+// type Teacher struct {
+// 	EmailID  string `json:"emailID"`
+// 	Password string `json:"password"`
+// }
 
 type Claims struct {
 	jwt.RegisteredClaims
@@ -18,6 +18,7 @@ type Filter struct {
 	Semester   string `json:"semester"`
 }
 
+// used to insert a student into studentDetails
 type Student struct {
 	Name         string `json:"name"`
 	SymbolNumber string `json:"symbolNumber"`
@@ -29,8 +30,8 @@ type Student struct {
 // this is what is obtained from the frontend
 // this isnt for usage with/in database
 type StudentAttendance struct {
-	Student    Student `json:"student"`
-	Attendance bool    `json:"attendance"`
+	Student    StudentDetails `json:"student"`
+	Attendance bool           `json:"attendance"`
 }
 
 // for studentDetails collection
@@ -40,15 +41,22 @@ type AttendanceDate struct {
 }
 
 type Attendance struct {
-	TeacherEmail    string           `json:"teacherEmail"`
-	AttendanceDates []AttendanceDate `json:"dates"`
+	TeacherEmail string           `json:"teacherEmail"`
+	Dates        []AttendanceDate `json:"dates"`
 }
 
 type StudentDetails struct {
-	Name              string       `json:"name"`
-	SymbolNumber      string       `json:"symbolNumber"`
-	Semester          string       `json:"semester"`
-	Department        string       `json:"department"`
-	Shift             string       `json:"shift"`
-	StudentAttendance []Attendance `json:"attendance"`
+	Name         string       `json:"name"`
+	SymbolNumber string       `json:"symbolNumber"`
+	Semester     string       `json:"semester"`
+	Department   string       `json:"department"`
+	Shift        string       `json:"shift"`
+	Attendance   []Attendance `json:"attendance"`
+}
+
+// Admin
+type LoginCredential struct {
+	// Name string `json:"name"`
+	EmailID  string `json:"emailID"`
+	Password string `json:"password"`
 }

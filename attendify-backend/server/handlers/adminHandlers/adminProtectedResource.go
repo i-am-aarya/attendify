@@ -1,15 +1,18 @@
-package teacherhandlers
+package adminhandlers
 
 import (
 	"attendify/teacher-server/database"
 	"encoding/json"
 	"net/http"
+	"os"
 	"strings"
 
 	"github.com/golang-jwt/jwt/v4"
 )
 
 func HandleProtectedResource(w http.ResponseWriter, r *http.Request) {
+
+	// fmt.Println("Secret Key: ", os.Getenv("SecretKey"))
 
 	authHeader := r.Header.Get("Authorization")
 
@@ -28,7 +31,7 @@ func HandleProtectedResource(w http.ResponseWriter, r *http.Request) {
 	rawToken := tokenParts[1]
 
 	tokenString, err := jwt.Parse(rawToken, func(t *jwt.Token) (interface{}, error) {
-		return []byte(SecretKey), nil
+		return []byte(os.Getenv("SecretKey")), nil
 	})
 
 	if err != nil {
@@ -49,15 +52,15 @@ func HandleProtectedResource(w http.ResponseWriter, r *http.Request) {
 	if authorized {
 		claims := tokenString.Claims.(jwt.MapClaims)
 
-		teacher, err := database.GetTeacherByEmailID(claims["emailID"].(string))
+		admin, err := database.GetAdminByEmailID(claims["emailID"].(string))
 
 		if err != nil {
-			http.Error(w, "Error fetching teacher data", http.StatusInternalServerError)
+			http.Error(w, "Error fetching admin data", http.StatusInternalServerError)
 			return
 		}
 
 		w.Header().Set("Content-Type", "application/json")
-		json.NewEncoder(w).Encode(teacher)
+		json.NewEncoder(w).Encode(admin)
 
 	}
 }
