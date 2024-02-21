@@ -8,6 +8,9 @@ import Dashboard from './pages/dashboard/Dashboard';
 import { ThemeProvider, createTheme } from '@mui/material';
 import ViewStudents from './pages/student/ViewStudents';
 import AddStudent from './pages/student/AddStudent';
+import AddTeacher from './pages/teacher/AddTeacher';
+import DeleteStudent from './pages/student/DeleteStudent';
+import DeleteTeacher from './pages/teacher/DeleteTeacher';
 
 
 
@@ -24,6 +27,9 @@ function App() {
       <Route path='/dashboard' element={<ProtectedRoutes><Dashboard children={null}/></ProtectedRoutes>}/>
       <Route path='/view-students' element={<ProtectedRoutes><ViewStudents/></ProtectedRoutes>}/>
       <Route path='/add-student' element={<ProtectedRoutes><AddStudent/></ProtectedRoutes>}/>
+      <Route path='/delete-student' element={<ProtectedRoutes><DeleteStudent/></ProtectedRoutes>}/>
+      <Route path='/add-teacher' element={<ProtectedRoutes><AddTeacher/></ProtectedRoutes>}/>
+      <Route path='/delete-teacher' element={<ProtectedRoutes><DeleteTeacher/></ProtectedRoutes>}/>
     </Routes>
     </ThemeProvider>
     </>

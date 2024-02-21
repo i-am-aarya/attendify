@@ -18,7 +18,7 @@ func MatchEmailAndPassword(email string, password string, userType string) (bool
 	} else if userType == "admin" {
 		collection = adminDetails
 	}
-	cursor, err := collection.Find(context.Background(), bson.D{{Key: "emailID", Value: email}})
+	cursor, err := collection.Find(context.Background(), bson.D{{Key: "emailid", Value: email}})
 
 	if err != nil {
 		fmt.Printf("Cound not find teacher credentials\n")

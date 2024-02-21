@@ -19,5 +19,7 @@ func SetupRoutes(router *mux.Router) {
 	router.HandleFunc("/api/admin/find-students", adminhandlers.FindStudentsHandler).Methods("POST")
 
 	router.HandleFunc("/api/admin/add-student", adminhandlers.AddStudentHandler).Methods("POST")
-
+	router.HandleFunc("/api/admin/add-teacher", adminhandlers.AddTeacherHandler).Methods("POST")
+	router.HandleFunc("/api/admin/delete-student", adminhandlers.DeleteStudentHandler).Methods("GET")
+	router.HandleFunc("/api/admin/delete-teacher", adminhandlers.DeleteTeacherHandler).Methods("GET")
 }

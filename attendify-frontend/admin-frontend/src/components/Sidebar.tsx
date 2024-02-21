@@ -68,12 +68,12 @@ const DashboardSidebar = () => {
             style={{ fontFamily: "Poppins" }}
             icon={<People />}
           >
-            <MenuItem
+            {/* <MenuItem
               icon={<PersonPin />}
               component={<Link to="/view-students" />}
             >
               <Typography sx={{ fontFamily: "Poppins" }}>View</Typography>{" "}
-            </MenuItem>
+            </MenuItem> */}
 
             {/* <MenuItem
               icon={<PersonSearch />}
@@ -91,7 +91,7 @@ const DashboardSidebar = () => {
 
             <MenuItem
               icon={<PersonRemove />}
-              component={<Link to="/remove-students" />}
+              component={<Link to="/delete-student" />}
             >
               <Typography sx={{ fontFamily: "Poppins" }}>Remove</Typography>
             </MenuItem>
@@ -102,19 +102,19 @@ const DashboardSidebar = () => {
             style={{ fontFamily: "Poppins" }}
             icon={<PersonOutline />}
           >
-            <MenuItem
+            {/* <MenuItem
               icon={<PersonPin />}
               component={<Link to="/view-teachers" />}
             >
               <Typography sx={{ fontFamily: "Poppins" }}>View</Typography>{" "}
-            </MenuItem>
+            </MenuItem> */}
 
-            <MenuItem
+            {/* <MenuItem
               icon={<PersonSearch />}
               component={<Link to="/search-teachers" />}
             >
               <Typography sx={{ fontFamily: "Poppins" }}>Search</Typography>
-            </MenuItem>
+            </MenuItem> */}
 
             <MenuItem
               icon={<PersonAdd />}
@@ -125,13 +125,13 @@ const DashboardSidebar = () => {
 
             <MenuItem
               icon={<PersonRemove />}
-              component={<Link to="/remove-teacher" />}
+              component={<Link to="/delete-teacher" />}
             >
               <Typography sx={{ fontFamily: "Poppins" }}>Remove</Typography>
             </MenuItem>
           </SubMenu>
 
-          <SubMenu
+          {/* <SubMenu
             label="Admin"
             style={{ fontFamily: "Poppins" }}
             icon={<AdminPanelSettings />}
@@ -163,7 +163,7 @@ const DashboardSidebar = () => {
             >
               <Typography sx={{ fontFamily: "Poppins" }}>Remove</Typography>
             </MenuItem>
-          </SubMenu>
+          </SubMenu> */}
         </Menu>
       </Sidebar>
     </>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Dashboard from "../dashboard/Dashboard";
 import {
+  Alert,
   Box,
   Button,
   FormControl,
@@ -9,6 +10,7 @@ import {
   MenuItem,
   Paper,
   Select,
+  Snackbar,
   TextField,
   Typography,
   makeStyles,
@@ -24,6 +26,17 @@ const AddStudent = () => {
   const [studentDepartment, setStudentDepartment] = useState("");
   const [studentShift, setStudentShift] = useState("");
   const [studentEmail, setStudentEmail] = useState("");
+
+  const [snackbarOpen, setSnackbarOpen] = useState(false)
+  const [studentAdditionStatus, setStudentAdditionStatus] = useState(false)
+
+  const handleSnackbarClose = (event: React.SyntheticEvent | Event, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setSnackbarOpen(false);
+  };
 
   const handleAddStudent = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -41,25 +54,27 @@ const AddStudent = () => {
           shift: studentShift,
           semester: studentSemester,
           email: studentEmail
-        },
-        // {
-        //   headers: {
-        //     Authorization: `Bearer ${jwt}`
-        //   }
-        // }
+        }
       )
+
+      setStudentName("");
+      setStudentSymbolNo("");
+      setStudentSemester("");
+      setStudentDepartment("");
+      setStudentShift("");
+      setStudentEmail("");
+
+
+
+      setStudentAdditionStatus(true)
+      setSnackbarOpen(true)
 
     } catch (error) {
       console.error(error)
+
+      setStudentAdditionStatus(false)
+      setSnackbarOpen(true)
     }
-    console.log(`
-    Name: ${studentName}
-    Symbol Number: ${studentSymbolNo}
-    Semester: ${studentSemester}
-    Department: ${studentDepartment}
-    Shift: ${studentShift}
-    Email: ${studentEmail}
-    `)
   }
 
   return (
@@ -75,6 +90,8 @@ const AddStudent = () => {
       >
         Add New Student
       </Typography>
+
+      
 
       <Paper sx={{ p: 3, borderRadius: 3 }} elevation={5}>
         <Typography
@@ -97,6 +114,7 @@ const AddStudent = () => {
             minWidth: "50vw",
           }}
         >
+          {/* <form ></form> */}
           <Box sx={{ display: "flex", flexDirection: "row", gap: "10px" }}>
             <CustomTextField
               value={studentName}
@@ -230,6 +248,20 @@ const AddStudent = () => {
         
 
       </Paper>
+
+
+      <Snackbar
+      anchorOrigin={{vertical: 'bottom', horizontal: 'left'}}
+      open={snackbarOpen}
+      // message={studentAdditionStatus? "Created New Student!" : "Error Creating New Student!"}
+      autoHideDuration={4000}
+      onClose={handleSnackbarClose}
+      >
+        <Alert severity={studentAdditionStatus? 'success' : 'error'} onClose={handleSnackbarClose}>
+          {/* {loginStatus.status === 'success' ? "Login Successful!" : "Login Unsuccessful"} */}
+          {studentAdditionStatus? "Created New Student!" : "Error Creating New Student!"}
+        </Alert>
+      </Snackbar>
     </Dashboard>
   );
 };

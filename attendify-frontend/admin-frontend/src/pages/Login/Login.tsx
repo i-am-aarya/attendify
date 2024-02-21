@@ -1,28 +1,34 @@
 // import * as React from "react";
-import React from 'react'
+import React, { useState } from 'react'
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import axios from "axios";
-import { Typography } from "@mui/material";
+import { Alert, Snackbar, Typography } from "@mui/material";
 // import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { LockClockOutlined, LockOutlined } from "@mui/icons-material";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 interface LoginResponse {
   adminToken: string;
 }
 
+interface LoginStatus{
+  status: 'success' | 'error'
+}
+
 const Login = () => {
   const [emailID, setEmailID] = React.useState("");
   const [password, setPassword] = React.useState("");
+
+  const [snackbarOpen, setSnackbarOpen] = useState(false)
+  const [loginStatus, setLoginStatus] = useState<LoginStatus>({status:'error'})
 
   const navigate = useNavigate()
 
   const handleLogin = async (event: any) => {
     event.preventDefault();
-    console.log(emailID, password)
 
     try {
 
@@ -32,25 +38,24 @@ const Login = () => {
       })
 
       localStorage.setItem('adminToken', response.data.adminToken)
+      setLoginStatus({status:'success'})
+      setSnackbarOpen(true)
 
       navigate('/dashboard')
 
 
     } catch (error) {
-      const errorMessage = "Oops! 🙁 Login unsuccessful. Please check your credentials and try again."
-        toast.error(errorMessage, {
-          position: "top-center"
-        })
+      console.error("Error logging in")
+
+      setLoginStatus({status:'error'})
+      setSnackbarOpen(true)
+      
+
     }
 
   };
 
   function isButtonDisabled() {
-    // if (emailID != "" && password != "") {
-    //     return true
-    // } else {
-    //     return false
-    // }
     return emailID == "" || password == "";
   }
 
@@ -60,6 +65,14 @@ const Login = () => {
       navigate('/dashboard')
     }
   })
+
+  const handleSnackbarClose = (event: React.SyntheticEvent | Event, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setSnackbarOpen(false);
+  };
 
   return (
     <Box
@@ -73,6 +86,20 @@ const Login = () => {
         overflowY: "hidden",
       }}
     >
+
+
+      <Snackbar
+      anchorOrigin={{vertical: 'bottom', horizontal: 'left'}}
+      open={snackbarOpen}
+      // message={loginStatus.status=='success'? "Login Successful" : "Error Logging In!"}
+      autoHideDuration={4000}
+      onClose={handleSnackbarClose}
+      >
+        <Alert severity={loginStatus.status} onClose={handleSnackbarClose}>
+          {loginStatus.status === 'success' ? "Login Successful!" : "Login Unsuccessful"}
+        </Alert>
+      </Snackbar>
+
       <Typography
         variant="h2"
         sx={{ fontWeight: "bold", fontStyle: "Poppins", margin: "100px" }}
