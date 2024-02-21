@@ -25,10 +25,14 @@ const Login = () => {
   const [snackbarOpen, setSnackbarOpen] = useState(false)
   const [loginStatus, setLoginStatus] = useState<LoginStatus>({status:'error'})
 
+  const [loginIncorrect, setLoginIncorrect] = useState(false)
+
   const navigate = useNavigate()
 
   const handleLogin = async (event: any) => {
     event.preventDefault();
+
+    checkLoginCredentials()
 
     try {
 
@@ -49,6 +53,7 @@ const Login = () => {
 
       setLoginStatus({status:'error'})
       setSnackbarOpen(true)
+      setLoginIncorrect(true)
       
 
     }
@@ -73,6 +78,16 @@ const Login = () => {
 
     setSnackbarOpen(false);
   };
+
+  function checkLoginCredentials() {
+    const isEmailCorrect = /@ncit\.edu\.np$/.test(emailID)
+
+    if (!(isEmailCorrect && password.trim())) {
+      // setloginIncorrect(true)
+      setLoginIncorrect(true)
+    } 
+
+  }
 
   return (
     <Box
@@ -117,22 +132,6 @@ const Login = () => {
       </Typography>
       </Box>
 
-      {/* <Box
-        sx={{
-          borderRadius: "100px",
-          backgroundColor: "purple",
-          width: "60px",
-          height: "60px",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        //   border: "1px solid gray",
-          marginBottom: "10px"
-        }}
-      >
-        <LockOutlined sx={{ color: "white", width: "30px", height: "50px" }} />
-      </Box> */}
-
       <Box
         sx={{
           display: "flex",
@@ -160,6 +159,7 @@ const Login = () => {
           <TextField
             label="emailID"
             type="text"
+            error={loginIncorrect}
             value={emailID}
             onChange={(e) => {
               setEmailID(e.target.value);
@@ -174,7 +174,9 @@ const Login = () => {
           {/* Password TextField */}
           <TextField
             label="Password"
+            error={loginIncorrect}
             type="password"
+            helperText={loginIncorrect ? "Incorrect email or password" : "" }
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             fullWidth

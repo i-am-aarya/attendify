@@ -5,6 +5,7 @@ import {
   Box,
   Button,
   FormControl,
+  FormHelperText,
   Grid,
   InputLabel,
   MenuItem,
@@ -18,6 +19,7 @@ import {
 } from "@mui/material";
 import CustomTextField from "../../components/CustomTextField";
 import axios from "axios";
+import { isNumericLiteral } from "typescript";
 
 const AddStudent = () => {
   const [studentName, setStudentName] = useState("");
@@ -30,6 +32,13 @@ const AddStudent = () => {
   const [snackbarOpen, setSnackbarOpen] = useState(false)
   const [studentAdditionStatus, setStudentAdditionStatus] = useState(false)
 
+  const [emailIsValid, setEmailIsValid] = useState(true)
+  const [symbolNumberIsNumber, setSymbolNumberIsNumber] = useState(true)
+  const [nameIsValid, setNameIsValid] = useState(true)
+  const [semesterIsValid, setSemesterIsValid] = useState(true)
+  const [departmentIsValid, setDepartmentIsValid] = useState(true)
+  const [shiftIsValid, setShiftIsValid] = useState(true)
+
   const handleSnackbarClose = (event: React.SyntheticEvent | Event, reason?: string) => {
     if (reason === 'clickaway') {
       return;
@@ -40,6 +49,10 @@ const AddStudent = () => {
 
   const handleAddStudent = async (event: React.FormEvent) => {
     event.preventDefault();
+
+    if (!checkFormValidity()) {
+      return
+    }
 
     try {
 
@@ -75,6 +88,47 @@ const AddStudent = () => {
       setStudentAdditionStatus(false)
       setSnackbarOpen(true)
     }
+  }
+
+  function checkFormValidity() {
+    let valid = true
+
+    if (!(/@ncit\.edu\.np$/.test(studentEmail))) {
+      setEmailIsValid(false)
+      valid = false
+    }
+
+    if (!isNaN(parseInt(studentSymbolNo)) || !studentSymbolNo.trim()) {
+      setSymbolNumberIsNumber(false)
+      valid = false
+    }
+
+    if (!studentName.trim()) {
+      setNameIsValid(false)
+      valid = false
+    }
+
+
+    if (!studentSemester.trim()) {
+      setSemesterIsValid(false)
+      valid = false
+    }
+
+    
+    if (!studentDepartment.trim()) {
+      setDepartmentIsValid(false)
+      valid = false
+    }
+
+    
+    if (!studentShift.trim()) {
+      setShiftIsValid(false)
+      valid = false
+    }
+
+    
+
+    return valid
   }
 
   return (
@@ -123,6 +177,9 @@ const AddStudent = () => {
               }}
               label="Name"
 
+              error={!nameIsValid}
+              helperText={nameIsValid ? "" : "Name cannot be empty"}
+
               fullWidth
             />
 
@@ -132,6 +189,9 @@ const AddStudent = () => {
                 setStudentSymbolNo(e.target.value);
               }}
               label="Symbol Number"
+
+              error={!symbolNumberIsNumber}
+              helperText={symbolNumberIsNumber ? "" : "Symbol number must be an integer"}
 
               fullWidth
             />
@@ -154,6 +214,8 @@ const AddStudent = () => {
                     borderColor: "#91C8E4",
                   },
                 }}
+
+              error={!semesterIsValid}
               >
                 <MenuItem value={"first"}>1st</MenuItem>
                 <MenuItem value={"second"}>2nd</MenuItem>
@@ -164,6 +226,7 @@ const AddStudent = () => {
                 <MenuItem value={"seventh"}>7th</MenuItem>
                 <MenuItem value={"eighth"}>8th</MenuItem>
               </Select>
+              <FormHelperText>{semesterIsValid ? "" : "Please select an option"}</FormHelperText>
             </FormControl>
 
             <FormControl fullWidth>
@@ -181,6 +244,7 @@ const AddStudent = () => {
                     borderColor: "#91C8E4",
                   },
                 }}
+                error={!departmentIsValid}
               >
                 <MenuItem value={"software"}>Software</MenuItem>
                 <MenuItem value={"it"}>IT</MenuItem>
@@ -188,6 +252,8 @@ const AddStudent = () => {
                 <MenuItem value={"computer"}>Computer</MenuItem>
                 <MenuItem value={"civil"}>Civil</MenuItem>
               </Select>
+              <FormHelperText>{semesterIsValid ? "" : "Please select an option"}</FormHelperText>
+
             </FormControl>
           </Box>
 
@@ -208,10 +274,13 @@ const AddStudent = () => {
                     borderColor: "#91C8E4",
                   },
                 }}
+                error={!shiftIsValid}
               >
                 <MenuItem value={"morning"}>Morning</MenuItem>
                 <MenuItem value={"day"}>Day</MenuItem>
               </Select>
+              <FormHelperText>{semesterIsValid ? "" : "Please select an option"}</FormHelperText>
+
             </FormControl>
 
 
@@ -227,6 +296,9 @@ const AddStudent = () => {
               }}
               label="Email"
               fullWidth
+
+              error={!emailIsValid}
+              helperText={emailIsValid ? "" : "Insert a valid college email"  }
             />
           </Box>
 
