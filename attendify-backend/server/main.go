@@ -18,12 +18,13 @@ func main() {
 	log.Println("Connected to database")
 
 	// setting cors
-	corsHandler := handlers.CORS(
-		handlers.AllowedHeaders([]string{"*"}),
-		// handlers.AllowedMethods([]string{"GET", "POST", "PUT", "DELETE", "OPTIONS"}),
-		handlers.AllowedMethods([]string{"*"}),
+	corsMiddleware := handlers.CORS(
 		handlers.AllowedOrigins([]string{"*"}),
+		handlers.AllowedMethods([]string{"GET", "POST", "PUT", "DELETE", "OPTIONS"}),
+		handlers.AllowedHeaders([]string{"Content-Type", "Authorization"}),
+		// handlers.AllowedMethods([]string{"*"}),
 	)
+
 	routes.SetupRoutes(router)
 
 	port := ":8080"
@@ -35,5 +36,5 @@ func main() {
 		}
 	}()
 
-	http.ListenAndServe(port, corsHandler(router))
+	http.ListenAndServe(port, corsMiddleware(router))
 }
